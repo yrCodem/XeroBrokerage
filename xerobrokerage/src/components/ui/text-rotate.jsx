@@ -9,8 +9,13 @@ import {
   useState,
 } from "react"
 // import { AnimatePresence, motion } from "motion/react";
-import { AnimatePresence, motion } from "framer-motion";
-
+import {
+  AnimatePresence,
+  AnimatePresenceProps,
+  motion,
+  MotionProps,
+  Transition,
+} from "motion/react"
 
 import { cn } from "@/lib/utils"
 
@@ -134,12 +139,15 @@ const TextRotate = forwardRef((
     return () => clearInterval(intervalId);
   }, [next, rotationInterval, auto])
 
-  return (
-    <motion.span
-      className={cn("flex flex-wrap whitespace-pre-wrap", mainClassName)}
-      {...props}
-      layout
-      transition={transition}>
+ 
+    return (
+      <motion.div
+        className={cn("flex flex-wrap whitespace-pre-wrap", mainClassName)}
+        {...props}
+        layout
+        transition={transition}
+      >
+    
       <span className="sr-only">{texts[currentTextIndex]}</span>
       <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
         <motion.div
@@ -185,7 +193,7 @@ const TextRotate = forwardRef((
           })}
         </motion.div>
       </AnimatePresence>
-    </motion.span>
+    </motion.div>
   );
 })
 

@@ -26,8 +26,8 @@ export default function Navbar() {
 
   return (
     <nav className="header min-w-screen min-h-16 lg:min-h-20 bg-[#FAEDCD] flex justify-between items-center lg:px-6 px-4 relative">
-      <Link href="/" className="poppins-black text-3xl">
-        LOGO
+      <Link href="/" className="playfair-display text-3xl">
+        XeroBrokerage
       </Link>
 
       <div
