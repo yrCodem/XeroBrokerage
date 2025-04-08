@@ -6,6 +6,8 @@ import { LayoutGroup, motion } from "motion/react";
 
 import { TextRotate } from "@/components/ui/text-rotate";
 
+
+
 export default function Home() {
   return (
     <>

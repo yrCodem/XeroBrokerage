@@ -25,7 +25,7 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <nav className="header min-w-screen min-h-16 lg:min-h-20 bg-[#FAEDCD] flex justify-between items-center lg:px-6 px-4 relative">
+    <nav className="header fixed min-w-screen min-h-16 lg:min-h-20 bg-[#FAEDCD] flex justify-between items-center lg:px-6 px-4 z-50">
       <Link href="/" className="playfair-display text-3xl">
         XeroBrokerage
       </Link>

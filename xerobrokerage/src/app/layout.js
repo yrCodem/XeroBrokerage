@@ -9,13 +9,12 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en">
-      <body className="">
+      <body className="bg-[#FAEDCD]">
+        <Navbar />
         <WavyBackground className="" backgroundFill={"#FAEDCD"}>
-          <Navbar />
-          <main className="max-h-[90vh] max-w-screen">{children}</main>
+          <main className="max-h-[90vh] max-w-screen relative top-[10vh]">{children}</main>
         </WavyBackground>
       </body>
     </html>

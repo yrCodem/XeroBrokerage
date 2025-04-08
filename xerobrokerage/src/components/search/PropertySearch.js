@@ -25,10 +25,7 @@ export default function PropertySearch() {
           className="input input-bordered w-full focus:outline-none focus:ring-0 text-xl rounded-sm border border-black sm:border-0 p-4 sm:p-1"
         />
 
-        <select className="select select-bordered w-full sm:w-auto text-black focus:outline-none rounded-sm text-xl p-4 sm:p-1 border border-black sm:border-0" defaultValue={"Property Type"}>
-          <option disabled className="text-xl p-2 poppins-semibold ">
-            Property Type
-          </option>
+        <select className="select select-bordered w-full sm:w-auto text-black focus:outline-none rounded-sm text-xl p-4 sm:p-1 border border-black sm:border-0">
           <option className="text-xl p-2 poppins-semibold ">Apartment</option>
           <option className="text-xl p-2 poppins-semibold ">Villa</option>
           <option className="text-xl p-2 poppins-semibold ">Office</option>
