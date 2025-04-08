@@ -5,8 +5,7 @@ import FeaturedListing from "@/components/search/FeaturedListing";
 import { LayoutGroup, motion } from "motion/react";
 
 import { TextRotate } from "@/components/ui/text-rotate";
-
-
+import PropertyListing from "@/components/search/PropertyListing";
 
 export default function Home() {
   return (
@@ -46,9 +45,14 @@ export default function Home() {
       <div className="container mx-auto px-4 -mt-8 mb-16">
         <PropertySearch />
       </div>
-
       <section className="container mx-auto px-4 mb-16">
         <h2 className="text-2xl poppins-semibold mb-6">Featured Properties</h2>
+
+      </section>
+
+      <section className="container mx-auto px-4 mb-16">
+        <h2 className="text-2xl poppins-semibold mb-6">Explore All Properties</h2>
+        <PropertyListing/>
       </section>
     </>
   );
