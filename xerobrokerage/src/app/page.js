@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <section className="py-8">
-        <div className="text-4xl sm:text-3xl poppins-bold md:text-5xl flex flex-col gap-4 items-center justify-center font-overusedGrotesk dark:text-muted text-foreground font-light overflow-hidden p-12 sm:p-20 md:p-24">
+        <div className="text-2xl sm:text-3xl poppins-bold md:text-5xl flex flex-col gap-4 items-center justify-center font-overusedGrotesk dark:text-muted text-foreground font-light overflow-hidden p-12 sm:p-20 md:p-24">
           <LayoutGroup>
             <motion.div className="flex whitespace-pre" layout>
               <motion.span

@@ -1,10 +1,27 @@
+import {useState, useEffect} from 'react'
+
 export default function PropertySearch() {
+
+  const placeholders = [
+    "Search in Delhi...",
+    "Looking for something in Bhopal?",
+    "Try Mumbai maybe?",
+    "Find listings near you",
+  ]
+  const [placeholderIndex, setPlaceholderIndex] = useState(0)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % placeholders.length)
+    }, 5000) 
+
+    return () => clearInterval(interval)
+  }, [])
   return (
-    <div className=" md:px-12 md:py-6 p-6 rounded-xl shadow-2xl bg-black/7">
+    <div className=" md:px-12 md:py-4 p-6 rounded-xl shadow-2xl bg-black/7">
       <div className="flex flex-col sm:flex-row sm:gap-4 gap-6">
         <input
           type="text"
-          placeholder="Location"
+          placeholder={placeholders[placeholderIndex]}
           className="input input-bordered w-full focus:outline-none focus:ring-0 text-xl rounded-sm border border-black sm:border-0 p-4 sm:p-1"
         />
 
@@ -15,9 +32,11 @@ export default function PropertySearch() {
           <option className="text-xl p-2 poppins-semibold ">Apartment</option>
           <option className="text-xl p-2 poppins-semibold ">Villa</option>
           <option className="text-xl p-2 poppins-semibold ">Office</option>
+          <option className="text-xl p-2 poppins-semibold ">Hostel</option>
+          <option className="text-xl p-2 poppins-semibold ">Flat</option>
         </select>
 
-        <button className="bg-[#6D6D6D] flex flex-row items-center justify-center p-4 rounded-sm border  border-black sm:border-0 ">
+        <button className="bg-[#ff5941] flex flex-row items-center justify-center p-4 rounded-sm border  border-black sm:border-0 ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="30px"
