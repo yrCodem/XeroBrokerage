@@ -6,8 +6,16 @@ import { LayoutGroup, motion } from "motion/react";
 
 import { TextRotate } from "@/components/ui/text-rotate";
 import PropertyListing from "@/components/search/PropertyListing";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [data, setData] = useState("");
+
+  useEffect(() => {
+    axios.get("/api/test").then((res) => setData(res.data));
+  }, []);
+
   return (
     <>
       <section className="py-8">
@@ -22,7 +30,15 @@ export default function Home() {
                 Find Your Perfect{" "}
               </motion.span>
               <TextRotate
-                texts={["Property", "Home", "Hostel", "Site" , "Office" , "Apartment" , "Villa"]}
+                texts={[
+                  "Property",
+                  "Home",
+                  "Hostel",
+                  "Site",
+                  "Office",
+                  "Apartment",
+                  "Villa",
+                ]}
                 mainClassName="text-white px-2 sm:px-2 md:px-3 bg-[#ff5941] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
                 staggerFrom={"last"}
                 initial={{ y: "100%" }}
@@ -47,12 +63,13 @@ export default function Home() {
       </div>
       <section className="container mx-auto px-4 mb-16">
         <h2 className="text-2xl poppins-semibold mb-6">Featured Properties</h2>
-
       </section>
 
       <section className="container mx-auto px-4 mb-16">
-        <h2 className="text-2xl poppins-semibold mb-6">Explore All Properties</h2>
-        <PropertyListing/>
+        <h2 className="text-2xl poppins-semibold mb-6">
+          Explore All Properties
+        </h2>
+        <PropertyListing />
       </section>
     </>
   );

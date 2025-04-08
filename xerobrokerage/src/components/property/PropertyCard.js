@@ -27,9 +27,10 @@ export default function PropertyCard({ property }) {
           <Link
             href={`/properties/${property.id}`}
             className='btn btn-primary btn-sm w-full'
-          >
+            >
             View Details
           </Link>
+            <h3>Property ID : {property._id}</h3>
         </div>
       </div>
     </div>
