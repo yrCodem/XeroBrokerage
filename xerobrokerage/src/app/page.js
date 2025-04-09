@@ -3,6 +3,7 @@
 import PropertySearch from "@/components/search/PropertySearch";
 import FeaturedListing from "@/components/search/FeaturedListing";
 import { LayoutGroup, motion } from "motion/react";
+import Link from "next/link";
 
 import { TextRotate } from "@/components/ui/text-rotate";
 import PropertyListing from "@/components/search/PropertyListing";
@@ -55,6 +56,30 @@ export default function Home() {
               brokerage fees
             </p>
           </LayoutGroup>
+
+          <Link
+            href="/upload-property"
+            className="flex items-center gap-2 p-2"
+          >
+            <motion.button
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{
+                duration: 0.3,
+                type: "spring",
+                stiffness: 300,
+                damping: 20,
+              }}
+              layout
+              layoutId="cta-button"
+              className="text-lg shadow-2xl px-8 py-3 mt-2 rounded-3xl  text-white bg-[#ff5941]"
+            >
+              Upload Property
+            </motion.button>
+          </Link>
         </div>
       </section>
 

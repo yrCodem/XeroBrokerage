@@ -1,38 +1,47 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image";
+import Link from "next/link";
 
 export default function PropertyCard({ property }) {
   return (
-    <div className='card bg-base-100 shadow-md hover:shadow-xl transition-shadow lg:w-[30%] md:w-[45%] w-[95%]  '>
-      <figure className='h-48 relative'>
+    <div className="card bg-black/10 backdrop-blur-sm shadow-md hover:shadow-xl transition-shadow rounded-[30px] lg:w-[30%] md:w-[45%] w-[95%] overflow-hidden">
+      <figure className="relative w-full h-0 pb-[66.66%] overflow-hidden  shadow-sm group">
         <Image
           alt={property.title}
-          src={property.image || '/property-placeholder.jpg'}
+          src={property.image || "/property-placeholder.jpg"}
           fill
-          className='object-contain'
-          sizes='(max-width: 768px) 100vw, 33vw'
+          className="object-cover group-hover:scale-102 transition-transform duration-300 ease-in-out"
+          sizes="(max-width: 768px) 100vw, 33vw"
           priority={property.featured}
         />
       </figure>
-      <div className='card-body p-2'>
-        <h3 className='card-title poppins-semibold text-xl mt-4'>
-          ₹{property.price.toLocaleString('en-IN')}
+
+      <div className="card-body px-5 py-3 space-y-2 text-black">
+        <h3 className="text-3xl poppins-bold tracking-wide">
+          ₹{property.price.toLocaleString("en-IN")}
         </h3>
-        <p className='text-gray-600'>{property.address}</p>
-        <div className='flex gap-4 mt-2 text-md poppins-regular'>
-          <span>Beds : {property.beds}</span>
-          <span>Bathrooms :  {property.baths}</span>
-        </div>
-        <div className='card-actions mt-4'>
-          <Link
-            href={`/properties/${property.id}`}
-            className='btn btn-primary btn-sm w-full'
+        <p className="text-sm opacity-80">{property.address}</p>
+        <div className="flex gap-3 mt-2 text-sm">
+          <div className="px-4 py-2 rounded-full backdrop-blur-md flex items-center gap-2 text-sm text-black shadow-sm">
+            <span className="flex items-center gap-1 font-medium text-sm">
+              {property.beds} <span className=" opacity-50">Beds</span>
+            </span>
+            <span className="text-sm text-black/40">•</span>
+            <span className="flex items-center gap-1 font-medium text-sm">
+              {property.baths} <span className=" opacity-50">Baths</span>
+            </span>
+          </div>
+
+          <div className="card-actions flex flex-col gap-2">
+            <Link
+              href={`/properties/${property._id}`}
+              className="btn  backdrop-blur-xs p-2 px-4 hover:bg-black/30 text-black btn-sm rounded-full w-fit transition text-center"
             >
-            View Details
-          </Link>
-            <h3>Property ID : {property._id}</h3>
+              View Details
+            </Link>
+            <p className="text-xs opacity-60 text-center">ID: {property._id}</p>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
