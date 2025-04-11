@@ -30,7 +30,7 @@ const Footer = () => {
         <div className='grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4'>
           <div className='space-y-3'>
             <h3 className='tracking-wide uppercase font-extrabold dark:text-gray-900'>
-              Company
+              Quick Links
             </h3>
             <ul className='space-y-1'>
               <li>
@@ -51,6 +51,16 @@ const Footer = () => {
               <li>
                 <a rel='noopener noreferrer' href='#'>
                   FAQs
+                </a>
+              </li>
+              <li>
+                <a rel='noopener noreferrer' href='#'>
+                  Feedback
+                </a>
+              </li>
+              <li>
+                <a rel='noopener noreferrer' href='#'>
+                  Report a problem
                 </a>
               </li>
             </ul>
