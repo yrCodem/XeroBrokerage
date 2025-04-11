@@ -1,12 +1,13 @@
 'use client'
 import Tooltip from '@/styles/Tooltip'
 import React from 'react'
-
+// import FooterIcon from '@/assets/footer.svg'
+// import { ReactComponent as FooterIcon } from '@/assets/footer.svg'
 const Footer = () => {
   return (
     <footer className='px-4 divide-y dark:bg-gray-100 dark:text-gray-800'>
       <div className='container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0'>
-        <div className='lg:w-1/3'>
+        <div className='lg:w-1/3 flex flex-col items-center lg:items-start'>
           <a
             rel='noopener noreferrer'
             href='#'
@@ -26,6 +27,10 @@ const Footer = () => {
               XeroBrokerage
             </span>
           </a>
+          {/* illustration */}
+          {/* <div className='mt-4 w-40 h-auto'>
+            <FooterIcon className='w-40 h-auto' />
+          </div> */}
         </div>
         <div className='grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4'>
           <div className='space-y-3'>
