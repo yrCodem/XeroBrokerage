@@ -24,15 +24,14 @@ const PropertySchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      default: "", // fallback image URL can go here
+      default: "", 
     },
   },
   {
-    timestamps: true, // auto adds createdAt and updatedAt fields
+    timestamps: true, 
   }
 );
 
-// Avoid model overwrite issue during hot reload
 const Property =
   mongoose.models.Property || mongoose.model("Property", PropertySchema);
 
