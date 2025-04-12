@@ -109,16 +109,23 @@ const Tooltip = () => {
 const StyledWrapper = styled.div`
   ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
   .example-2 {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 8px 0;
+    margin-left: -50px;
   }
   .example-2 .icon-content {
-    margin: 0 10px;
     position: relative;
+    flex-shrink: 0;
+    margin-left: 8px;
   }
   .example-2 .icon-content .tooltip {
     position: absolute;
@@ -132,6 +139,10 @@ const StyledWrapper = styled.div`
     visibility: hidden;
     font-size: 14px;
     transition: all 0.3s ease;
+    white-space: nowrap;
+    max-width: 100vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .example-2 .icon-content:hover .tooltip {
     opacity: 1;
@@ -144,13 +155,40 @@ const StyledWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 70%;
     color: #4d4d4d;
     background-color: #fff;
     transition: all 0.3s ease-in-out;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
   }
+
+  /* Media queries for smaller screens */
+  @media (max-width: 480px) {
+    .example-2 {
+      gap: 6px;
+      padding: 6px;
+    }
+
+    .icon-content a {
+      width: 36px;
+      height: 36px;
+    }
+
+    .icon-content a svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .tooltip {
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+  }
+
   .example-2 .icon-content a:hover {
     box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
   }
