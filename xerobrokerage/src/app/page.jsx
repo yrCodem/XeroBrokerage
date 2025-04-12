@@ -5,12 +5,14 @@ import FeaturedListing from '@/components/search/FeaturedListing'
 import Footer from '@/components/ui/footer'
 import { LayoutGroup, motion } from 'motion/react'
 import Link from 'next/link'
+import GooeyNav from '@/styles/GooeyNav'
 
 import { TextRotate } from '@/components/ui/text-rotate'
 import PropertyListing from '@/components/search/PropertyListing'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Testimonials from '@/components/ui/Testimonial'
+import { Radio } from 'lucide-react'
 
 export default function Home() {
   const [data, setData] = useState('')
@@ -18,6 +20,11 @@ export default function Home() {
   useEffect(() => {
     axios.get('/api/test').then(res => setData(res.data))
   }, [])
+  const items = [
+    { label: 'Home', href: '#' },
+    { label: 'About', href: '#' },
+    { label: 'Contact', href: '#' },
+  ]
 
   return (
     <>
@@ -81,14 +88,51 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
+      <div className='container mx-auto px-4 -mt-8 mb-16 '>
+        <GooeyNav />
+      </div>
+      {/* <div
+        style={{
+          height: '80px',
+          position: 'relative',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: '#ff5941',
+          //   overflow: 'hidden',
+          //   textAlign: 'center',
+          //   justifyContent: 'center',
+          //   justifyContent: 'center',
+          //   backgroundColor: '#ff5941',
+          textUnderlineOffset: '10px',
+          //   textJustify: 'inter-word',
+        }}
+      >
+        <GooeyNav
+          items={items.map(item => ({
+            ...item,
+            // Add style properties to each item
+            style: {
+              color: 'black',
+              fontWeight: 'bold',
+              // Add any other text styling you want
+            },
+          }))}
+          animationTime={600}
+          pCount={15}
+          minDistance={20}
+          maxDistance={42}
+          maxRotate={75}
+          colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+          timeVariance={300}
+        />
+      </div> */}
       <div className='container mx-auto px-4 -mt-8 mb-16'>
         <PropertySearch />
       </div>
       <section className='container mx-auto px-4 mb-16'>
         <h2 className='text-2xl poppins-semibold mb-6'>Featured Properties</h2>
       </section>
-
       <section className='container mx-auto px-4 mb-16'>
         <h2 className='text-2xl poppins-semibold mb-6'>
           Explore All Properties

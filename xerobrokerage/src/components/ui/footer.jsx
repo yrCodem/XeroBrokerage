@@ -1,6 +1,8 @@
 'use client'
 import Tooltip from '@/styles/Tooltip'
 import React from 'react'
+import Image from 'next/image'
+import Apartment from '@/assets/city.png'
 // import FooterIcon from '@/assets/footer.svg'
 // import { ReactComponent as FooterIcon } from '@/assets/footer.svg'
 const Footer = () => {
@@ -28,9 +30,19 @@ const Footer = () => {
             </span>
           </a>
           {/* illustration */}
-          {/* <div className='mt-4 w-40 h-auto'>
-            <FooterIcon className='w-40 h-auto' />
-          </div> */}
+          <div>
+            <div className='w-full max-w-[800px] mx-auto'>
+              <Image
+                src={Apartment}
+                alt='City Image'
+                width={450}
+                height={60}
+                quality={85} // Quality reduced so that it loads even on slow internet
+                className='rounded-lg object-cover'
+                priority
+              />
+            </div>
+          </div>
         </div>
         <div className='grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4'>
           <div className='space-y-3'>
