@@ -88,9 +88,9 @@ export default function Home() {
           </Link>
         </div>
       </section>
-      <div className='container mx-auto px-4 -mt-8 mb-16 '>
+      {/* <div className='container mx-auto px-4 -mt-8 mb-16 '>
         <GooeyNav />
-      </div>
+      </div> */}
       {/* <div
         style={{
           height: '80px',
