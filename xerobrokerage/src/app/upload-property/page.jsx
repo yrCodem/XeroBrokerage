@@ -14,6 +14,25 @@ export default function Upload() {
     size: '',
     maintainence: '',
   })
+  const [selectedAmenities, setSelectedAmenities] = useState([])
+  const amenitiesList = [
+    "Children's Play Area",
+    'Lift',
+    'Gym',
+    'Clubhouse',
+    'Swimming Pool',
+    'Park',
+    'Security',
+    'Power Backup',
+    'Utility Shops',
+    '24*7 CCTV Surveillance',
+    'Intercom',
+    'Green Space',
+    'Fire Safety',
+    'Shopping Center',
+    'Gas Pipeline',
+    'Maintenance Staff',
+  ]
 
   // Possession status
   const [possessionDate, setPossessionDate] = useState('')
@@ -56,6 +75,15 @@ export default function Upload() {
       textarea.style.height = `${textarea.scrollHeight}px`
     }
   }, [description])
+
+  //   Amenities
+  const handleAmenityChange = amenity => {
+    setSelectedAmenities(prev =>
+      prev.includes(amenity)
+        ? prev.filter(a => a !== amenity)
+        : [...prev, amenity],
+    )
+  }
 
   const handleFileChange = e => {
     const file = e.target.files[0]
@@ -473,6 +501,35 @@ export default function Upload() {
               resize: 'vertical',
             }}
           />
+        </div>
+
+        {/* Amenities */}
+        <h2 className='text-2xl font-bold text-left'>Amenities</h2>
+        <div className='max-w-lg mx-auto'>
+          <label className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
+            Choose the Amenities for your property
+          </label>
+          <div className='grid grid-cols-2 gap-3'>
+            {amenitiesList.map(amenity => (
+              <div key={amenity} className='flex items-center'>
+                <input
+                  type='checkbox'
+                  id={`amenity-${amenity}`}
+                  name='amenities'
+                  value={amenity}
+                  checked={selectedAmenities.includes(amenity)}
+                  onChange={() => handleAmenityChange(amenity)}
+                  className='w-4 h-4 rounded bg-black/10 border-gray-300 focus:ring-blue-500'
+                />
+                <label
+                  htmlFor={`amenity-${amenity}`}
+                  className='ml-2 text-sm text-gray-900'
+                >
+                  {amenity}
+                </label>
+              </div>
+            ))}
+          </div>
         </div>
         <button
           type='submit'
