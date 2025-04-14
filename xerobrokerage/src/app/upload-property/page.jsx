@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 export default function Upload() {
   const [preview, setPreview] = useState(null)
@@ -33,6 +33,11 @@ export default function Upload() {
   // Flooring Type
   const [flooringType, setFlooringType] = useState('')
   const flooringOptions = ['Vitrified Tiles', 'Wooden Flooring']
+
+  // Property Descritpion
+  const [description, setDescription] = useState('')
+  const textareaRef = useRef(null)
+
   // Number validation
   const validateNumber = (name, value) => {
     if (value < 0) {
@@ -42,6 +47,15 @@ export default function Upload() {
     setErrors(prev => ({ ...prev, [name]: '' }))
     return true
   }
+
+  // Handle textarea resizing
+  useEffect(() => {
+    const textarea = textareaRef.current
+    if (textarea) {
+      textarea.style.height = 'auto'
+      textarea.style.height = `${textarea.scrollHeight}px`
+    }
+  }, [description])
 
   const handleFileChange = e => {
     const file = e.target.files[0]
@@ -436,6 +450,30 @@ export default function Upload() {
           </select>
         </div>
 
+        {/* Property Description */}
+        <h2 className='text-2xl font-bold text-left'>Property Description</h2>
+        <div className='max-w-lg mx-auto'>
+          <label
+            htmlFor='property-description'
+            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+          >
+            Property Description
+          </label>
+          <textarea
+            ref={textareaRef}
+            id='property-description'
+            name='description'
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md placeholder-gray-400 focus:outline-none resize-y min-h-[100px]'
+            placeholder='Enter a detailed description about the property... (e.g. location advantages, special features)'
+            rows={3}
+            style={{
+              minHeight: '100px',
+              resize: 'vertical',
+            }}
+          />
+        </div>
         <button
           type='submit'
           className={`w-full bg-black text-white hover:bg-gray-800 transition-all duration-300 py-2 px-4 rounded-xl font-semibold ${
