@@ -26,6 +26,13 @@ export default function Upload() {
   const [furnishingStatus, setFurnishingStatus] = useState('')
   const furnishingOptions = ['Unfurnished', 'Semi-Furnished', 'Fully Furnished']
 
+  // Property Type
+  const [propertyType, setPropertyType] = useState('')
+  const propertyOptions = ['Apartment', 'Villa', 'Office', 'Hostel', 'Flat']
+
+  // Flooring Type
+  const [flooringType, setFlooringType] = useState('')
+  const flooringOptions = ['Vitrified Tiles', 'Wooden Flooring']
   // Number validation
   const validateNumber = (name, value) => {
     if (value < 0) {
@@ -270,6 +277,33 @@ export default function Upload() {
         {/* Overview Section */}
         <h2 className='text-2xl font-bold text-left'>Overview</h2>
 
+        {/* Property Type */}
+        <div className='max-w-lg mx-auto'>
+          <label
+            htmlFor='property-type'
+            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+          >
+            Property Type
+          </label>
+          <select
+            id='property-type'
+            name='propertyType'
+            value={propertyType}
+            onChange={e => setPropertyType(e.target.value)}
+            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md focus:outline-none text-gray-900 '
+            required
+          >
+            <option value='' disabled className='text-white'>
+              Select Property Type
+            </option>
+            {propertyOptions.map(option => (
+              <option key={option} value={option} className='text-gray-400'>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+
         {/* Size */}
         <div className='max-w-lg mx-auto'>
           <label
@@ -336,7 +370,7 @@ export default function Upload() {
             name='furnishingStatus'
             value={furnishingStatus}
             onChange={e => setFurnishingStatus(e.target.value)}
-            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md focus:outline-none text-gray-900'
+            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md focus:outline-none text-gray-900 '
             required
           >
             <option value='' disabled className='text-white'>
@@ -373,6 +407,33 @@ export default function Upload() {
           {errors.maintainence && (
             <p className='text-red-500 text-sm mt-1'>{errors.maintainence}</p>
           )}
+        </div>
+
+        {/* Flooring Type */}
+        <div className='max-w-lg mx-auto'>
+          <label
+            htmlFor='flooring-type'
+            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+          >
+            Flooring Type
+          </label>
+          <select
+            id='flooring-type'
+            name='flooringType'
+            value={flooringType}
+            onChange={e => setFlooringType(e.target.value)}
+            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md focus:outline-none text-gray-900 '
+            required
+          >
+            <option value='' disabled className='text-white'>
+              Select Flooring Type
+            </option>
+            {flooringOptions.map(option => (
+              <option key={option} value={option} className='text-gray-400'>
+                {option}
+              </option>
+            ))}
+          </select>
         </div>
 
         <button
