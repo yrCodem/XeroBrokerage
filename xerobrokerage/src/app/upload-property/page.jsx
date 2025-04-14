@@ -12,6 +12,7 @@ export default function Upload() {
     baths: '',
     price: '',
     size: '',
+    maintainence: '',
   })
 
   // Possession status
@@ -347,6 +348,31 @@ export default function Upload() {
               </option>
             ))}
           </select>
+        </div>
+
+        {/* Maintainence */}
+        <div className='max-w-lg mx-auto'>
+          <label
+            htmlFor='user_avatar'
+            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+          >
+            Maintainence (Rs. per sq ft/M)
+          </label>
+          <input
+            className={`w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md placeholder-gray-400 focus:outline-none ${
+              errors.maintainence ? 'border border-red-500' : ''
+            }`}
+            placeholder='Ex. Rs.3.2'
+            type='float'
+            name='maintainence'
+            required
+            min='0'
+            onChange={e => validateNumber('size', e.target.value)}
+            style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}
+          />
+          {errors.maintainence && (
+            <p className='text-red-500 text-sm mt-1'>{errors.maintainence}</p>
+          )}
         </div>
 
         <button
