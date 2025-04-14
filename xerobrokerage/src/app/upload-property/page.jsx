@@ -14,6 +14,8 @@ export default function Upload() {
     size: '',
   })
   const [possessionDate, setPossessionDate] = useState('')
+  const [bhkConfig, setBhkConfig] = useState('')
+  const bhkOptions = ['1 BHK', '2 BHK', '3 BHK', '4 BHK', '5 BHK', '6 BHK+']
 
   // Number validation
   const validateNumber = (name, value) => {
@@ -259,7 +261,7 @@ export default function Upload() {
         {/* Overview Section */}
         <h2 className='text-2xl font-bold text-left'>Overview</h2>
 
-        {/* Price */}
+        {/* Size */}
         <div className='max-w-lg mx-auto'>
           <label
             htmlFor='user_avatar'
@@ -282,6 +284,34 @@ export default function Upload() {
           {errors.size && (
             <p className='text-red-500 text-sm mt-1'>{errors.size}</p>
           )}
+        </div>
+
+        {/* BHK configration */}
+        <div className='max-w-lg mx-auto'>
+          <label
+            htmlFor='bhk-config'
+            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+          >
+            Property Configuration
+          </label>
+          <select
+            id='bhk-config'
+            placeholder='Select BHK Configration'
+            name='bhkConfig'
+            value={bhkConfig}
+            onChange={e => setBhkConfig(e.target.value)}
+            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md focus:outline-none text-gray-900 placeholder-gray-400'
+            required
+          >
+            <option value='' disabled className='text-white'>
+              Select BHK configuration
+            </option>
+            {bhkOptions.map(option => (
+              <option key={option} value={option} className='text-gray-400'>
+                {option}
+              </option>
+            ))}
+          </select>
         </div>
 
         <button
