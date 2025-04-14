@@ -255,6 +255,9 @@ export default function Upload() {
           </div>
         </div>
 
+        {/* Overview Section */}
+        <h2 className='text-2xl font-bold text-left'>Overview</h2>
+
         <button
           type='submit'
           className={`w-full bg-black text-white hover:bg-gray-800 transition-all duration-300 py-2 px-4 rounded-xl font-semibold ${
