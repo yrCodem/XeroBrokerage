@@ -13,9 +13,17 @@ export default function Upload() {
     price: '',
     size: '',
   })
+
+  // Possession status
   const [possessionDate, setPossessionDate] = useState('')
+
+  //   Configuration status
   const [bhkConfig, setBhkConfig] = useState('')
   const bhkOptions = ['1 BHK', '2 BHK', '3 BHK', '4 BHK', '5 BHK', '6 BHK+']
+
+  // Furnishing Status
+  const [furnishingStatus, setFurnishingStatus] = useState('')
+  const furnishingOptions = ['Unfurnished', 'Semi-Furnished', 'Fully Furnished']
 
   // Number validation
   const validateNumber = (name, value) => {
@@ -307,6 +315,33 @@ export default function Upload() {
               Select BHK configuration
             </option>
             {bhkOptions.map(option => (
+              <option key={option} value={option} className='text-gray-400'>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Furnishing Status */}
+        <div className='max-w-lg mx-auto'>
+          <label
+            htmlFor='furnishing-status'
+            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+          >
+            Furnishing Status
+          </label>
+          <select
+            id='furnishing-status'
+            name='furnishingStatus'
+            value={furnishingStatus}
+            onChange={e => setFurnishingStatus(e.target.value)}
+            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md focus:outline-none text-gray-900'
+            required
+          >
+            <option value='' disabled className='text-gray-400'>
+              Select furnishing status
+            </option>
+            {furnishingOptions.map(option => (
               <option key={option} value={option} className='text-gray-400'>
                 {option}
               </option>
