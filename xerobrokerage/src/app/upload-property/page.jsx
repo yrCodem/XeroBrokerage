@@ -338,7 +338,7 @@ export default function Upload() {
             className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md focus:outline-none text-gray-900'
             required
           >
-            <option value='' disabled className='text-gray-400'>
+            <option value='' disabled className='text-white'>
               Select furnishing status
             </option>
             {furnishingOptions.map(option => (
