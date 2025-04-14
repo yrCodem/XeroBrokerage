@@ -11,6 +11,7 @@ export default function Upload() {
     beds: '',
     baths: '',
     price: '',
+    size: '',
   })
   const [possessionDate, setPossessionDate] = useState('')
 
@@ -257,6 +258,31 @@ export default function Upload() {
 
         {/* Overview Section */}
         <h2 className='text-2xl font-bold text-left'>Overview</h2>
+
+        {/* Price */}
+        <div className='max-w-lg mx-auto'>
+          <label
+            htmlFor='user_avatar'
+            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+          >
+            Size (in sq ft)
+          </label>
+          <input
+            className={`w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md placeholder-gray-400 focus:outline-none ${
+              errors.size ? 'border border-red-500' : ''
+            }`}
+            placeholder='Ex. 810'
+            type='float'
+            name='size'
+            required
+            min='0'
+            onChange={e => validateNumber('size', e.target.value)}
+            style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}
+          />
+          {errors.size && (
+            <p className='text-red-500 text-sm mt-1'>{errors.size}</p>
+          )}
+        </div>
 
         <button
           type='submit'
