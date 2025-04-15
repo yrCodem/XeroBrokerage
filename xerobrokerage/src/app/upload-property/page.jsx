@@ -363,7 +363,6 @@ export default function Upload() {
                       min={new Date().toISOString().split('T')[0]}
                       required
                     />
-                    <FiCalendar className='absolute right-3 top-3 text-gray-400' />
                   </div>
                 </div>
 
