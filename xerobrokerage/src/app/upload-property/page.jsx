@@ -1,8 +1,16 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import {
+  FiUploadCloud,
+  FiCalendar,
+  FiHome,
+  FiLayers,
+  FiCheckCircle,
+} from 'react-icons/fi'
 
 export default function Upload() {
+  // State management
   const [preview, setPreview] = useState(null)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
@@ -15,6 +23,15 @@ export default function Upload() {
     maintainence: '',
   })
   const [selectedAmenities, setSelectedAmenities] = useState([])
+  const [possessionDate, setPossessionDate] = useState('')
+  const [bhkConfig, setBhkConfig] = useState('')
+  const [furnishingStatus, setFurnishingStatus] = useState('')
+  const [propertyType, setPropertyType] = useState('')
+  const [flooringType, setFlooringType] = useState('')
+  const [description, setDescription] = useState('')
+  const textareaRef = useRef(null)
+
+  // Options data
   const amenitiesList = [
     "Children's Play Area",
     'Lift',
@@ -33,31 +50,18 @@ export default function Upload() {
     'Gas Pipeline',
     'Maintenance Staff',
   ]
-
-  // Possession status
-  const [possessionDate, setPossessionDate] = useState('')
-
-  //   Configuration status
-  const [bhkConfig, setBhkConfig] = useState('')
   const bhkOptions = ['1 BHK', '2 BHK', '3 BHK', '4 BHK', '5 BHK', '6 BHK+']
-
-  // Furnishing Status
-  const [furnishingStatus, setFurnishingStatus] = useState('')
   const furnishingOptions = ['Unfurnished', 'Semi-Furnished', 'Fully Furnished']
-
-  // Property Type
-  const [propertyType, setPropertyType] = useState('')
   const propertyOptions = ['Apartment', 'Villa', 'Office', 'Hostel', 'Flat']
+  const flooringOptions = [
+    'Vitrified Tiles',
+    'Wooden Flooring',
+    'Marble',
+    'Granite',
+    'Cement',
+  ]
 
-  // Flooring Type
-  const [flooringType, setFlooringType] = useState('')
-  const flooringOptions = ['Vitrified Tiles', 'Wooden Flooring']
-
-  // Property Descritpion
-  const [description, setDescription] = useState('')
-  const textareaRef = useRef(null)
-
-  // Number validation
+  // Validation and handlers
   const validateNumber = (name, value) => {
     if (value < 0) {
       setErrors(prev => ({ ...prev, [name]: 'Value cannot be negative' }))
@@ -67,16 +71,6 @@ export default function Upload() {
     return true
   }
 
-  // Handle textarea resizing
-  useEffect(() => {
-    const textarea = textareaRef.current
-    if (textarea) {
-      textarea.style.height = 'auto'
-      textarea.style.height = `${textarea.scrollHeight}px`
-    }
-  }, [description])
-
-  //   Amenities
   const handleAmenityChange = amenity => {
     setSelectedAmenities(prev =>
       prev.includes(amenity)
@@ -93,456 +87,499 @@ export default function Upload() {
     }
   }
 
+  const formatCurrency = e => {
+    let value = e.target.value.replace(/\D/g, '')
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    e.target.value = value
+  }
+
+  useEffect(() => {
+    const textarea = textareaRef.current
+    if (textarea) {
+      textarea.style.height = 'auto'
+      textarea.style.height = `${textarea.scrollHeight}px`
+    }
+  }, [description])
+
   const handleSubmit = async e => {
     e.preventDefault()
     setLoading(true)
     setMessage('')
 
     const formData = new FormData(e.target)
+    formData.append('amenities', JSON.stringify(selectedAmenities))
 
     try {
       const res = await fetch('/api/properties', {
         method: 'POST',
         body: formData,
       })
-
       const data = await res.json()
-      setMessage('✅ Property uploaded!')
-      console.log(data)
+      setMessage('✅ Property uploaded successfully!')
     } catch (err) {
       console.error(err)
-      setMessage('❌ Upload failed.')
+      setMessage('❌ Upload failed. Please try again.')
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div className='flex flex-col gap-8 items-center justify-center'>
-      <h1 className='mt-16 text-5xl poppins-black text-center'>
-        Upload Your Property...
-      </h1>
-      <form
-        onSubmit={handleSubmit}
-        className='bg-black/10 shadow-2xl backdrop-blur-md rounded-2xl p-12 w-full max-w-md space-y-6 text-black'
-      >
-        <h2 className='text-2xl font-bold text-center'>Enter All the Fields</h2>
-
-        {/* Title */}
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='user_avatar'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            Property Title
-          </label>
-          <input
-            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md placeholder-gray-400 focus:outline-none'
-            placeholder='Ex. Meenakshi High Life Towers'
-            type='text'
-            name='title'
-            required
-          />
+    <div className='min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8'>
+      <div className='max-w-4xl mx-auto'>
+        {/* Header */}
+        <div className='text-center mb-10'>
+          <h1 className='text-4xl font-bold text-blue-800 mb-2'>
+            List Your Property
+          </h1>
+          <p className='text-lg text-blue-600'>
+            Fill in the details to showcase your property
+          </p>
         </div>
 
-        {/* Full Address */}
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='user_avatar'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            Property Full Address
-          </label>
-          <input
-            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md placeholder-gray-400 focus:outline-none'
-            placeholder='Ex. Standalone Building, Block 6, 80 Feet Rd'
-            type='text'
-            name='address'
-            required
-          />
-        </div>
+        {/* Form Container */}
+        <form
+          onSubmit={handleSubmit}
+          className='bg-white rounded-2xl shadow-xl overflow-hidden'
+        >
+          <div className='p-8 space-y-8'>
+            {/* Basic Information Section */}
+            <div className='space-y-6'>
+              <h2 className='text-2xl font-bold text-blue-800 border-b pb-2'>
+                Basic Information
+              </h2>
 
-        {/* Price */}
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='user_avatar'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            Property Price
-          </label>
-          <input
-            className={`w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md placeholder-gray-400 focus:outline-none ${
-              errors.price ? 'border border-red-500' : ''
-            }`}
-            placeholder='Ex. 1,000,000'
-            type='number'
-            name='price'
-            required
-            min='0'
-            onChange={e => validateNumber('price', e.target.value)}
-            style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}
-          />
-          {errors.price && (
-            <p className='text-red-500 text-sm mt-1'>{errors.price}</p>
-          )}
-        </div>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                {/* Property Title */}
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Property Title <span className='text-red-500'>*</span>
+                  </label>
+                  <input
+                    className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all'
+                    placeholder='Meenakshi High Life Towers'
+                    type='text'
+                    name='title'
+                    required
+                  />
+                </div>
 
-        {/* No. of Bedrooms */}
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='user_avatar'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            No. of Bedrooms
-          </label>
-          <input
-            className={`w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md placeholder-gray-400 focus:outline-none ${
-              errors.beds ? 'border border-red-500' : ''
-            }`}
-            placeholder='Ex. 3'
-            type='number'
-            name='beds'
-            required
-            min='0'
-            onChange={e => validateNumber('beds', e.target.value)}
-          />
-          {errors.beds && (
-            <p className='text-red-500 text-sm mt-1'>{errors.beds}</p>
-          )}
-        </div>
+                {/* Property Type */}
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Property Type <span className='text-red-500'>*</span>
+                  </label>
+                  <div className='relative'>
+                    <select
+                      name='propertyType'
+                      value={propertyType}
+                      onChange={e => setPropertyType(e.target.value)}
+                      className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none'
+                      required
+                    >
+                      <option value=''>Select property type</option>
+                      {propertyOptions.map(option => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                    <div className='absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none'>
+                      <FiHome className='text-gray-400' />
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        {/* No. of Bathrooms */}
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='user_avatar'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            No. of Bathrooms
-          </label>
-          <input
-            className={`w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md placeholder-gray-400 focus:outline-none ${
-              errors.baths ? 'border border-red-500' : ''
-            }`}
-            placeholder='Ex. 3'
-            type='number'
-            name='baths'
-            required
-            min='0'
-            onChange={e => validateNumber('baths', e.target.value)}
-          />
-          {errors.baths && (
-            <p className='text-red-500 text-sm mt-1'>{errors.baths}</p>
-          )}
-        </div>
+              {/* Address */}
+              <div>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                  Full Address <span className='text-red-500'>*</span>
+                </label>
+                <input
+                  className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                  placeholder='Standalone Building, Block 6, 80 Feet Rd'
+                  type='text'
+                  name='address'
+                  required
+                />
+              </div>
 
-        {/* Possession Date */}
-        <div className='relative'>
-          <label
-            htmlFor='possession-date'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            Possession Date
-          </label>
-          <input
-            type='date'
-            id='possession-date'
-            name='possessionDate'
-            value={possessionDate}
-            onChange={e => setPossessionDate(e.target.value)}
-            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md placeholder-gray-400 focus:outline-none'
-            min={new Date().toISOString().split('T')[0]} // Optional: Restrict to future dates
-            required
-          />
-          <div className='absolute inset-y-0 right-0 flex items-center pr-3 pt-5 pointer-events-none'>
-            <svg
-              className='w-0 h-0 text-gray-400'
-              fill='currentColor'
-              viewBox='0 0 20 20'
-            >
-              <path
-                fillRule='evenodd'
-                d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z'
-                clipRule='evenodd'
-              />
-            </svg>
-          </div>
-        </div>
+              {/* Price and Size */}
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Property Price (₹) <span className='text-red-500'>*</span>
+                  </label>
+                  <div className='relative'>
+                    <span className='absolute left-3 top-3 text-gray-500'>
+                      ₹
+                    </span>
+                    <input
+                      className={`w-full pl-10 pr-4 py-3 rounded-lg border ${
+                        errors.price ? 'border-red-500' : 'border-gray-300'
+                      } focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
+                      placeholder='1,00,00,000'
+                      type='text'
+                      name='price'
+                      required
+                      onChange={e => {
+                        formatCurrency(e)
+                        validateNumber(
+                          'price',
+                          e.target.value.replace(/,/g, ''),
+                        )
+                      }}
+                    />
+                    {errors.price && (
+                      <p className='mt-1 text-sm text-red-600'>
+                        {errors.price}
+                      </p>
+                    )}
+                  </div>
+                </div>
 
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='user_avatar'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            Upload Property Image
-          </label>
+                {/* Size */}
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Size (sq ft) <span className='text-red-500'>*</span>
+                  </label>
+                  <input
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      errors.size ? 'border-red-500' : 'border-gray-300'
+                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
+                    placeholder='810'
+                    type='number'
+                    name='size'
+                    required
+                    min='0'
+                    onChange={e => validateNumber('size', e.target.value)}
+                  />
+                  {errors.size && (
+                    <p className='mt-1 text-sm text-red-600'>{errors.size}</p>
+                  )}
+                </div>
+              </div>
 
-          <div className='flex items-center'>
-            <label
-              htmlFor='user_avatar'
-              className='px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-l-lg cursor-pointer hover:bg-gray-100 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600'
-            >
-              Browse...
-            </label>
+              {/* Configuration */}
+              <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Configuration <span className='text-red-500'>*</span>
+                  </label>
+                  <select
+                    name='bhkConfig'
+                    value={bhkConfig}
+                    onChange={e => setBhkConfig(e.target.value)}
+                    className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                    required
+                  >
+                    <option value=''>Select</option>
+                    {bhkOptions.map(option => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-            <div className='flex-1 px-4 py-2 text-sm text-gray-500 bg-gray-50 border border-l-0 border-gray-300 rounded-r-lg dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600'>
-              {fileName || 'No file selected'}
+                {/* Bedrooms */}
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Bedrooms <span className='text-red-500'>*</span>
+                  </label>
+                  <input
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      errors.beds ? 'border-red-500' : 'border-gray-300'
+                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
+                    placeholder='3'
+                    type='number'
+                    name='beds'
+                    required
+                    min='0'
+                    onChange={e => validateNumber('beds', e.target.value)}
+                  />
+                  {errors.beds && (
+                    <p className='mt-1 text-sm text-red-600'>{errors.beds}</p>
+                  )}
+                </div>
+
+                {/* Bathrooms */}
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Bathrooms <span className='text-red-500'>*</span>
+                  </label>
+                  <input
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      errors.baths ? 'border-red-500' : 'border-gray-300'
+                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
+                    placeholder='2'
+                    type='number'
+                    name='baths'
+                    required
+                    min='0'
+                    onChange={e => validateNumber('baths', e.target.value)}
+                  />
+                  {errors.baths && (
+                    <p className='mt-1 text-sm text-red-600'>{errors.baths}</p>
+                  )}
+                </div>
+
+                {/* Furnishing */}
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Furnishing <span className='text-red-500'>*</span>
+                  </label>
+                  <select
+                    name='furnishingStatus'
+                    value={furnishingStatus}
+                    onChange={e => setFurnishingStatus(e.target.value)}
+                    className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                    required
+                  >
+                    <option value=''>Select</option>
+                    {furnishingOptions.map(option => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Additional Details */}
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Possession Date <span className='text-red-500'>*</span>
+                  </label>
+                  <div className='relative'>
+                    <input
+                      type='date'
+                      name='possessionDate'
+                      value={possessionDate}
+                      onChange={e => setPossessionDate(e.target.value)}
+                      className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                      min={new Date().toISOString().split('T')[0]}
+                      required
+                    />
+                    <FiCalendar className='absolute right-3 top-3 text-gray-400' />
+                  </div>
+                </div>
+
+                {/* Flooring */}
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Flooring Type <span className='text-red-500'>*</span>
+                  </label>
+                  <select
+                    name='flooringType'
+                    value={flooringType}
+                    onChange={e => setFlooringType(e.target.value)}
+                    className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                    required
+                  >
+                    <option value=''>Select</option>
+                    {flooringOptions.map(option => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Maintenance */}
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Maintenance (₹/sq ft){' '}
+                    <span className='text-red-500'>*</span>
+                  </label>
+                  <input
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      errors.maintainence ? 'border-red-500' : 'border-gray-300'
+                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
+                    placeholder='3.2'
+                    type='number'
+                    name='maintainence'
+                    step='0.1'
+                    required
+                    min='0'
+                    onChange={e =>
+                      validateNumber('maintainence', e.target.value)
+                    }
+                  />
+                  {errors.maintainence && (
+                    <p className='mt-1 text-sm text-red-600'>
+                      {errors.maintainence}
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
 
-            <input
-              type='file'
-              id='user_avatar'
-              name='image'
-              className='hidden'
-              onChange={handleFileChange}
-              aria-describedby='user_avatar_help'
-              accept='image/*'
-              required
-            />
-          </div>
+            {/* Image Upload Section */}
+            <div className='space-y-6'>
+              <h2 className='text-2xl font-bold text-blue-800 border-b pb-2'>
+                Property Images
+              </h2>
 
-          {/* {preview && (
-            <img
-              src={preview}
-              alt='Preview'
-              className='mt-4 w-full rounded-xl border border-gray-300 shadow-md'
-            />
-          )} */}
-
-          <div
-            className='mt-1 text-sm text-gray-500 dark:text-gray-300'
-            id='user_avatar_help'
-          >
-            A property image helps attract more buyers
-          </div>
-        </div>
-
-        {/* Overview Section */}
-        <h2 className='text-2xl font-bold text-left'>Overview</h2>
-
-        {/* Property Type */}
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='property-type'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            Property Type
-          </label>
-          <select
-            id='property-type'
-            name='propertyType'
-            value={propertyType}
-            onChange={e => setPropertyType(e.target.value)}
-            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md focus:outline-none text-gray-900 '
-            required
-          >
-            <option value='' disabled className='text-white'>
-              Select Property Type
-            </option>
-            {propertyOptions.map(option => (
-              <option key={option} value={option} className='text-gray-400'>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Size */}
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='user_avatar'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            Size (in sq ft)
-          </label>
-          <input
-            className={`w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md placeholder-gray-400 focus:outline-none ${
-              errors.size ? 'border border-red-500' : ''
-            }`}
-            placeholder='Ex. 810'
-            type='float'
-            name='size'
-            required
-            min='0'
-            onChange={e => validateNumber('size', e.target.value)}
-            style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}
-          />
-          {errors.size && (
-            <p className='text-red-500 text-sm mt-1'>{errors.size}</p>
-          )}
-        </div>
-
-        {/* BHK configration */}
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='bhk-config'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            Property Configuration
-          </label>
-          <select
-            id='bhk-config'
-            placeholder='Select BHK Configration'
-            name='bhkConfig'
-            value={bhkConfig}
-            onChange={e => setBhkConfig(e.target.value)}
-            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md focus:outline-none text-gray-900 placeholder-gray-400'
-            required
-          >
-            <option value='' disabled className='text-white'>
-              Select BHK configuration
-            </option>
-            {bhkOptions.map(option => (
-              <option key={option} value={option} className='text-gray-400'>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Furnishing Status */}
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='furnishing-status'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            Furnishing Status
-          </label>
-          <select
-            id='furnishing-status'
-            name='furnishingStatus'
-            value={furnishingStatus}
-            onChange={e => setFurnishingStatus(e.target.value)}
-            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md focus:outline-none text-gray-900 '
-            required
-          >
-            <option value='' disabled className='text-white'>
-              Select furnishing status
-            </option>
-            {furnishingOptions.map(option => (
-              <option key={option} value={option} className='text-gray-400'>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Maintainence */}
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='user_avatar'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            Maintainence (Rs. per sq ft/M)
-          </label>
-          <input
-            className={`w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md placeholder-gray-400 focus:outline-none ${
-              errors.maintainence ? 'border border-red-500' : ''
-            }`}
-            placeholder='Ex. Rs.3.2'
-            type='float'
-            name='maintainence'
-            required
-            min='0'
-            onChange={e => validateNumber('size', e.target.value)}
-            style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}
-          />
-          {errors.maintainence && (
-            <p className='text-red-500 text-sm mt-1'>{errors.maintainence}</p>
-          )}
-        </div>
-
-        {/* Flooring Type */}
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='flooring-type'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            Flooring Type
-          </label>
-          <select
-            id='flooring-type'
-            name='flooringType'
-            value={flooringType}
-            onChange={e => setFlooringType(e.target.value)}
-            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md focus:outline-none text-gray-900 '
-            required
-          >
-            <option value='' disabled className='text-white'>
-              Select Flooring Type
-            </option>
-            {flooringOptions.map(option => (
-              <option key={option} value={option} className='text-gray-400'>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Property Description */}
-        <h2 className='text-2xl font-bold text-left'>Property Description</h2>
-        <div className='max-w-lg mx-auto'>
-          <label
-            htmlFor='property-description'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-          >
-            Property Description
-          </label>
-          <textarea
-            ref={textareaRef}
-            id='property-description'
-            name='description'
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-            className='w-full px-4 py-2 rounded-xl bg-black/10 shadow-2xl backdrop-blur-md placeholder-gray-400 focus:outline-none resize-y min-h-[100px]'
-            placeholder='Enter a detailed description about the property... (e.g. location advantages, special features)'
-            rows={3}
-            style={{
-              minHeight: '100px',
-              resize: 'vertical',
-            }}
-          />
-        </div>
-
-        {/* Amenities */}
-        <h2 className='text-2xl font-bold text-left'>Amenities</h2>
-        <div className='max-w-lg mx-auto'>
-          <label className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
-            Choose the Amenities for your property
-          </label>
-          <div className='grid grid-cols-2 gap-3'>
-            {amenitiesList.map(amenity => (
-              <div key={amenity} className='flex items-center'>
-                <input
-                  type='checkbox'
-                  id={`amenity-${amenity}`}
-                  name='amenities'
-                  value={amenity}
-                  checked={selectedAmenities.includes(amenity)}
-                  onChange={() => handleAmenityChange(amenity)}
-                  className='w-4 h-4 rounded bg-black/10 border-gray-300 focus:ring-blue-500'
-                />
-                <label
-                  htmlFor={`amenity-${amenity}`}
-                  className='ml-2 text-sm text-gray-900'
-                >
-                  {amenity}
+              <div className='space-y-4'>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                  Upload Images <span className='text-red-500'>*</span>
                 </label>
-              </div>
-            ))}
-          </div>
-        </div>
-        <button
-          type='submit'
-          className={`w-full bg-black text-white hover:bg-gray-800 transition-all duration-300 py-2 px-4 rounded-xl font-semibold ${
-            loading ? 'cursor-not-allowed opacity-50' : ''
-          }`}
-          disabled={loading}
-        >
-          {loading ? 'Uploading...' : 'Upload Property'}
-        </button>
 
-        {message && <p className='text-center mt-2 font-medium'>{message}</p>}
-      </form>
+                <div className='border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-500 transition-colors'>
+                  <FiUploadCloud className='mx-auto h-12 w-12 text-blue-400 mb-3' />
+                  <div className='flex justify-center'>
+                    <label className='px-6 py-2 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-blue-700 transition-colors'>
+                      Browse Files
+                      <input
+                        type='file'
+                        className='hidden'
+                        onChange={handleFileChange}
+                        accept='image/*'
+                        multiple
+                        required
+                      />
+                    </label>
+                  </div>
+                  <p className='mt-3 text-sm text-gray-600'>
+                    or drag and drop images here
+                  </p>
+                  <p className='text-xs text-gray-500 mt-1'>
+                    PNG, JPG up to 5MB each (max 10 images)
+                  </p>
+                </div>
+
+                {fileName && (
+                  <div className='text-sm text-gray-600'>
+                    Selected: {fileName}
+                  </div>
+                )}
+
+                {preview && (
+                  <div className='mt-4 grid grid-cols-3 gap-4'>
+                    <img
+                      src={preview}
+                      alt='Preview'
+                      className='rounded-lg border border-gray-200 h-32 object-cover'
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Description Section */}
+            <div className='space-y-6'>
+              <h2 className='text-2xl font-bold text-blue-800 border-b pb-2'>
+                Description
+              </h2>
+
+              <div>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                  Property Description <span className='text-red-500'>*</span>
+                </label>
+                <textarea
+                  ref={textareaRef}
+                  name='description'
+                  value={description}
+                  onChange={e => setDescription(e.target.value)}
+                  className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[150px]'
+                  placeholder='Describe your property in detail... (location advantages, special features, nearby amenities)'
+                  required
+                />
+                <div className='text-xs text-gray-500 mt-1'>
+                  {description.length}/2000 characters
+                </div>
+              </div>
+            </div>
+
+            {/* Amenities Section */}
+            <div className='space-y-6'>
+              <h2 className='text-2xl font-bold text-blue-800 border-b pb-2'>
+                Amenities
+              </h2>
+
+              <div>
+                <label className='block text-sm font-medium text-gray-700 mb-3'>
+                  Select Available Amenities
+                </label>
+
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                  {amenitiesList.map(amenity => (
+                    <div key={amenity} className='flex items-center'>
+                      <input
+                        type='checkbox'
+                        id={`amenity-${amenity}`}
+                        checked={selectedAmenities.includes(amenity)}
+                        onChange={() => handleAmenityChange(amenity)}
+                        className='h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded'
+                      />
+                      <label
+                        htmlFor={`amenity-${amenity}`}
+                        className='ml-2 text-sm text-gray-700'
+                      >
+                        {amenity}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Submit Section */}
+            <div className='pt-6'>
+              <button
+                type='submit'
+                className={`w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-md transition-all duration-300 flex items-center justify-center ${
+                  loading ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <svg
+                      className='animate-spin -ml-1 mr-3 h-5 w-5 text-white'
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                    >
+                      <circle
+                        className='opacity-25'
+                        cx='12'
+                        cy='12'
+                        r='10'
+                        stroke='currentColor'
+                        strokeWidth='4'
+                      ></circle>
+                      <path
+                        className='opacity-75'
+                        fill='currentColor'
+                        d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                      ></path>
+                    </svg>
+                    Processing...
+                  </>
+                ) : (
+                  'List My Property'
+                )}
+              </button>
+
+              {message && (
+                <div
+                  className={`mt-4 p-3 rounded-lg text-center ${
+                    message.includes('✅')
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-red-100 text-red-800'
+                  }`}
+                >
+                  {message}
+                </div>
+              )}
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
