@@ -91,9 +91,9 @@ const Footer = () => {
             </h3>
             <ul className='space-y-1'>
               <li>
-                <a rel='noopener noreferrer' href='#'>
-                  Privacy
-                </a>
+                <Link href='/privacy-page' className='hover:text-blue-300'>
+                  Privacy Policy
+                </Link>
               </li>
               <li>
                 {/* <TermsAndConditions /> */}
