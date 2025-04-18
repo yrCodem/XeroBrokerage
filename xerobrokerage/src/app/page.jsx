@@ -21,11 +21,6 @@ export default function Home() {
   useEffect(() => {
     axios.get('/api/test').then(res => setData(res.data))
   }, [])
-  const items = [
-    { label: 'Home', href: '#' },
-    { label: 'About', href: '#' },
-    { label: 'Contact', href: '#' },
-  ]
 
   return (
     <>
