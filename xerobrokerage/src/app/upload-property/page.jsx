@@ -10,7 +10,6 @@ import {
 } from 'react-icons/fi'
 
 export default function Upload() {
-  // State management
   const [preview, setPreview] = useState(null)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
@@ -31,10 +30,9 @@ export default function Upload() {
   const [description, setDescription] = useState('')
   const textareaRef = useRef(null)
 
-  // Options data
   const amenitiesList = [
     "Children's Play Area",
-    'Lift',
+    'Lift Facility',
     'Gym',
     'Clubhouse',
     'Swimming Pool',
@@ -61,7 +59,7 @@ export default function Upload() {
     'Cement',
   ]
 
-  // Validation and handlers
+  // Validation
   const validateNumber = (name, value) => {
     if (value < 0) {
       setErrors(prev => ({ ...prev, [name]: 'Value cannot be negative' }))
@@ -116,6 +114,7 @@ export default function Upload() {
       })
       const data = await res.json()
       setMessage('✅ Property uploaded successfully!')
+      console.log(data)
     } catch (err) {
       console.error(err)
       setMessage('❌ Upload failed. Please try again.')

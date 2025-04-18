@@ -1,8 +1,11 @@
 'use client'
+import Link from 'next/link'
 import Tooltip from '@/styles/Tooltip'
 import React from 'react'
 import Image from 'next/image'
 import Apartment from '@/assets/city.png'
+import { TermsAndConditions } from '../../app/terms-and-conditions/page'
+// import TermsAndConditions from '../../app/terms-and-condition/page'
 // import FooterIcon from '@/assets/footer.svg'
 // import { ReactComponent as FooterIcon } from '@/assets/footer.svg'
 const Footer = () => {
@@ -93,9 +96,13 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a rel='noopener noreferrer' href='#'>
-                  Terms of Service
-                </a>
+                {/* <TermsAndConditions /> */}
+                <Link
+                  href='/terms-and-conditions'
+                  className='hover:text-blue-300'
+                >
+                  Terms and Conditions
+                </Link>
               </li>
             </ul>
           </div>

@@ -12,6 +12,7 @@ import PropertyListing from '@/components/search/PropertyListing'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Testimonials from '@/components/ui/Testimonial'
+import TermsAndConditions from '@/app/terms-and-conditions/page'
 import { Radio } from 'lucide-react'
 
 export default function Home() {
