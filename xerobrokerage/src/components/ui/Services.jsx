@@ -55,7 +55,8 @@ export default function ServiceSection() {
         <div className='text-center mb-12'>
           <h2 className='text-3xl font-bold text-gray-900'>Our Services</h2>
           <p className='mt-4 text-xl text-gray-600'>
-            Direct connections to verified professionals - zero brokerage
+            Direct connections to verified professionals - your one-stop
+            solution XeroBroker
           </p>
         </div>
 
