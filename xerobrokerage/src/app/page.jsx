@@ -12,6 +12,7 @@ import PropertyListing from '@/components/search/PropertyListing'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Testimonials from '@/components/ui/Testimonial'
+import ServiceSection from '@/components/ui/Services'
 import TermsAndConditions from '@/app/terms-and-conditions/page'
 import { Radio } from 'lucide-react'
 
@@ -135,6 +136,9 @@ export default function Home() {
         </h2>
         <PropertyListing />
       </section>
+      <div className='container mx-auto px-4'>
+        <ServiceSection />
+      </div>
       <div className='container mx-auto px-4'>
         <Testimonials />
       </div>
