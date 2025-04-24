@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 
 export default function PropertySearch() {
   const placeholders = [
-    'Search in Delhi...',
-    'Looking for something in Bhopal?',
-    'Try Mumbai maybe?',
+    'Search in Raipur...',
+    'Looking for something in Bilaspur?',
+    'Try Korba maybe?',
     'Find listings near you',
   ]
   const [placeholderIndex, setPlaceholderIndex] = useState(0)
