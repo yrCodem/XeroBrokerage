@@ -65,9 +65,9 @@ const Footer = () => {
               </li>
 
               <li>
-                <a rel='noopener noreferrer' href='#'>
+                <Link href='/FAQ' className='hover:text-blue-300'>
                   FAQs
-                </a>
+                </Link>
               </li>
               <li>
                 <Link href='/feedback' className='hover:text-blue-300'>
