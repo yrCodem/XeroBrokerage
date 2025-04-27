@@ -45,6 +45,14 @@ const ReportProblemPage = () => {
     }
   }
 
+  const validatePhone = phone => {
+    // Remove all non-digit characters
+    const digitsOnly = phone.replace(/\D/g, '')
+
+    // Check if it's exactly 10 digits (excluding country code)
+    return digitsOnly.length === 10
+  }
+
   const validateForm = () => {
     const newErrors = {}
 
@@ -53,6 +61,9 @@ const ReportProblemPage = () => {
       newErrors.email = 'Email is required'
     } else if (!validateEmail(formData.email)) {
       newErrors.email = 'Invalid email format'
+    }
+    if (formData.phone && !validatePhone(formData.phone)) {
+      newErrors.phone = 'Please enter a valid 10-digit phone number'
     }
     if (!formData.serviceAffected)
       newErrors.serviceAffected = 'Please select a service'
@@ -69,7 +80,6 @@ const ReportProblemPage = () => {
     if (validateForm()) {
       console.log('Problem reported:', formData)
       setSubmitted(true)
-      // Here you would typically send the data to your backend
     }
   }
 
@@ -101,7 +111,7 @@ const ReportProblemPage = () => {
   ]
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-red-50 to-orange-50 py-12 px-4 sm:px-6 lg:px-8'>
+    <div className='min-h-screen scrollbar-hide bg-gradient-to-br from-red-50 to-orange-50 py-12 px-4 sm:px-6 lg:px-8'>
       <div className='max-w-4xl mx-auto'>
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -194,7 +204,7 @@ const ReportProblemPage = () => {
                     <div className='space-y-1'>
                       <label
                         htmlFor='phone'
-                        className='text-sm font-medium text-gray-700 flex items-center'
+                        className=' text-sm font-medium text-gray-700 flex items-center'
                       >
                         <FiPhone className='mr-2 text-red-500' /> Phone Number
                         (Optional)
@@ -205,9 +215,20 @@ const ReportProblemPage = () => {
                         name='phone'
                         value={formData.phone}
                         onChange={handleChange}
-                        className='block w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all'
-                        placeholder='+91 9876543210'
+                        className={`block w-full px-4 py-3 rounded-lg border ${
+                          errors.phone ? 'border-red-500' : 'border-gray-300'
+                        } focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all`}
+                        placeholder='+91 9876543210 or 9876543210'
                       />
+                      {errors.phone && (
+                        <motion.p
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className='text-red-500 text-xs mt-1'
+                        >
+                          {errors.phone}
+                        </motion.p>
+                      )}
                     </div>
 
                     <div className='space-y-1'>
