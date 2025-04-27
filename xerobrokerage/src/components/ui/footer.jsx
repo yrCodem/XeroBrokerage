@@ -74,9 +74,10 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a rel='noopener noreferrer' href='#'>
+                {/* <TermsAndConditions /> */}
+                <Link href='/feedback' className='hover:text-blue-300'>
                   Feedback
-                </a>
+                </Link>
               </li>
               <li>
                 <a rel='noopener noreferrer' href='#'>

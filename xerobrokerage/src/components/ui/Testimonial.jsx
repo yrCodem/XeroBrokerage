@@ -7,7 +7,7 @@ const testimonials = [
     role: 'Owner',
     image: 'https://api.multiavatar.com/BinxBond.svg',
     type: 'image/svg+xml',
-    alt: 'https://ui-avatars.com/api/?name=Umair+Malik',
+    // alt: 'https://ui-avatars.com/api/?name=Umair+Malik',
     quote:
       "XeroBrokerage has made renting my house so easy, It's like the best thing that ever happened to me. I highly recommend this website to all people out there who want to rent out there house. We couldn't be happier with the outcome !!",
     rating: 5,
