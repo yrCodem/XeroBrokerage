@@ -63,26 +63,21 @@ const Footer = () => {
                   About Us
                 </a>
               </li>
-              <li>
-                <a rel='noopener noreferrer' href='#'>
-                  Testimonials
-                </a>
-              </li>
+
               <li>
                 <a rel='noopener noreferrer' href='#'>
                   FAQs
                 </a>
               </li>
               <li>
-                {/* <TermsAndConditions /> */}
                 <Link href='/feedback' className='hover:text-blue-300'>
                   Feedback
                 </Link>
               </li>
               <li>
-                <a rel='noopener noreferrer' href='#'>
-                  Report a problem
-                </a>
+                <Link href='/report-a-problem' className='hover:text-blue-300'>
+                  Report a Problem
+                </Link>
               </li>
             </ul>
           </div>
