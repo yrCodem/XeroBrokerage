@@ -136,7 +136,7 @@ const ReportProblemPage = () => {
                     <div className='space-y-1'>
                       <label
                         htmlFor='name'
-                        className='block text-sm font-medium text-gray-700 flex items-center'
+                        className=' text-sm font-medium text-gray-700 flex items-center'
                       >
                         <FiUser className='mr-2 text-red-500' /> Your Name
                       </label>
@@ -165,7 +165,7 @@ const ReportProblemPage = () => {
                     <div className='space-y-1'>
                       <label
                         htmlFor='email'
-                        className='block text-sm font-medium text-gray-700 flex items-center'
+                        className='text-sm font-medium text-gray-700 flex items-center'
                       >
                         <FiMail className='mr-2 text-red-500' /> Email Address
                       </label>
@@ -194,7 +194,7 @@ const ReportProblemPage = () => {
                     <div className='space-y-1'>
                       <label
                         htmlFor='phone'
-                        className='block text-sm font-medium text-gray-700 flex items-center'
+                        className='text-sm font-medium text-gray-700 flex items-center'
                       >
                         <FiPhone className='mr-2 text-red-500' /> Phone Number
                         (Optional)
@@ -213,7 +213,7 @@ const ReportProblemPage = () => {
                     <div className='space-y-1'>
                       <label
                         htmlFor='serviceAffected'
-                        className='block text-sm font-medium text-gray-700 flex items-center'
+                        className=' text-sm font-medium text-gray-700 flex items-center'
                       >
                         <FiHome className='mr-2 text-red-500' /> Service
                         Affected
@@ -252,7 +252,7 @@ const ReportProblemPage = () => {
                     <div className='space-y-1'>
                       <label
                         htmlFor='issueType'
-                        className='block text-sm font-medium text-gray-700 flex items-center'
+                        className=' text-sm font-medium text-gray-700 flex items-center'
                       >
                         <FiAlertTriangle className='mr-2 text-red-500' /> Type
                         of Issue
@@ -314,7 +314,7 @@ const ReportProblemPage = () => {
                   <div className='space-y-1'>
                     <label
                       htmlFor='problemDescription'
-                      className='block text-sm font-medium text-gray-700 flex items-center'
+                      className=' text-sm font-medium text-gray-700 flex items-center'
                     >
                       <FiFileText className='mr-2 text-red-500' /> Problem
                       Description
@@ -330,7 +330,7 @@ const ReportProblemPage = () => {
                           ? 'border-red-500'
                           : 'border-gray-300'
                       } focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all`}
-                      placeholder='Please describe the problem in detail. Include steps to reproduce if possible.'
+                      placeholder='Please describe the problem in detail.'
                     />
                     {errors.problemDescription && (
                       <motion.p
