@@ -7,6 +7,8 @@ import {
   FiMail,
   FiUser,
   FiPhone,
+  FiDollarSign,
+  FiCheckCircle,
   FiHome,
 } from 'react-icons/fi'
 

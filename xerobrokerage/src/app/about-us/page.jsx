@@ -55,11 +55,11 @@ const AboutUsPage = () => {
             className='text-center mb-16'
           >
             <h1 className='text-4xl md:text-5xl font-bold text-gray-900 mb-4'>
-              About <span className='text-blue-600'>Xero Brokerage</span>
+              About <span className='text-blue-600'>Xero-Brokerage</span>
             </h1>
             <div className='w-24 h-1 bg-blue-500 mx-auto mb-6'></div>
             <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
-              Transforming Raipur's real estate with transparency and zero
+              Transforming Raipur's Real Estate with transparency and zero
               brokerage
             </p>
           </motion.div>
@@ -139,9 +139,9 @@ const AboutUsPage = () => {
                   As the market evolved, so did we. Today, under the name Xero
                   Brokerage, we've adopted a{' '}
                   <span className='font-semibold text-green-600'>
-                    zero-brokerage model
+                    Zero-Brokerage Model
                   </span>
-                  —designed to reduce the cost burden for buyers and sellers.
+                  — designed to reduce the cost burden for buyers and sellers.
                 </p>
               </div>
             </motion.div>
@@ -228,7 +228,7 @@ const AboutUsPage = () => {
                       2018
                     </h3>
                     <p className='text-gray-600'>
-                      Launched digital property platform
+                      Launched Digital Property Platform
                     </p>
                   </div>
                 </div>
@@ -256,7 +256,7 @@ const AboutUsPage = () => {
                       2023
                     </h3>
                     <p className='text-gray-600'>
-                      Rebranded as Xero Brokerage with zero-commission model
+                      Rebranded as Xero Brokerage with Zero-Commission Model
                     </p>
                   </div>
                 </div>
@@ -265,8 +265,7 @@ const AboutUsPage = () => {
           </div>
 
           {/* Floating CTA */}
-          {/* Your existing button - now with onClick handler */}
-          <Link href='/journey-modal' passHref>
+          {/* <Link href='/journey-modal' passHref>
             <motion.button
               className='mx-auto block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105'
               whileHover={{ scale: 1.05 }}
@@ -274,7 +273,7 @@ const AboutUsPage = () => {
             >
               Join Our Journey
             </motion.button>
-          </Link>
+          </Link> */}
 
           {/* Render the modal conditionally */}
           {showModal && (
