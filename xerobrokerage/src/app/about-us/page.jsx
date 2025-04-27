@@ -80,7 +80,7 @@ const AboutUsPage = () => {
               <div className='bg-blue-100 rounded-2xl p-8 shadow-lg'>
                 <div className='aspect-w-16 aspect-h-9 bg-gray-200 rounded-xl overflow-hidden'>
                   <img
-                    src='/raipur-property.jpg'
+                    src='../../assets/logo.jpg'
                     alt='Raipur real estate'
                     className='w-full h-full object-cover'
                   />
