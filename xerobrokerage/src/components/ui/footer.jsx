@@ -53,15 +53,15 @@ const Footer = () => {
               Quick Links
             </h3>
             <ul className='space-y-1'>
-              <li>
+              {/* <li>
                 <a rel='noopener noreferrer' href='#'>
                   Careers
                 </a>
-              </li>
+              </li> */}
               <li>
-                <a rel='noopener noreferrer' href='#'>
-                  About Us
-                </a>
+                <Link href='/about-us' className='hover:text-blue-300'>
+                  About US
+                </Link>
               </li>
 
               <li>
