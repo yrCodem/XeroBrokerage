@@ -12,7 +12,7 @@ import PropertyListing from '@/components/search/PropertyListing'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Testimonials from '@/components/ui/Testimonial'
-import ServiceSection from '@/components/ui/Services'
+import Services from '@/components/ui/Services'
 import TermsAndConditions from '@/app/terms-and-conditions/page'
 import { Radio } from 'lucide-react'
 
@@ -85,45 +85,7 @@ export default function Home() {
           </Link>
         </div>
       </section>
-      {/* <div className='container mx-auto px-4 -mt-8 mb-16 '>
-        <GooeyNav />
-      </div> */}
-      {/* <div
-        style={{
-          height: '80px',
-          position: 'relative',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          color: '#ff5941',
-          //   overflow: 'hidden',
-          //   textAlign: 'center',
-          //   justifyContent: 'center',
-          //   justifyContent: 'center',
-          //   backgroundColor: '#ff5941',
-          textUnderlineOffset: '10px',
-          //   textJustify: 'inter-word',
-        }}
-      >
-        <GooeyNav
-          items={items.map(item => ({
-            ...item,
-            // Add style properties to each item
-            style: {
-              color: 'black',
-              fontWeight: 'bold',
-              // Add any other text styling you want
-            },
-          }))}
-          animationTime={600}
-          pCount={15}
-          minDistance={20}
-          maxDistance={42}
-          maxRotate={75}
-          colors={[1, 2, 3, 1, 2, 3, 1, 4]}
-          timeVariance={300}
-        />
-      </div> */}
+
       <div className='container mx-auto px-4 -mt-8 mb-16'>
         <PropertySearch />
       </div>
@@ -137,7 +99,7 @@ export default function Home() {
         <PropertyListing />
       </section>
       <div className='container mx-auto px-4'>
-        <ServiceSection />
+        <Services />
       </div>
       <div className='container mx-auto px-4'>
         <Testimonials />
