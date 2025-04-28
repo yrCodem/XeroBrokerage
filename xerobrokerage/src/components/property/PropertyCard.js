@@ -1,17 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import placeholderImage from '@/assets/placeholder-house.png';
 
 export default function PropertyCard({ property }) {
   return (
     <div className="card bg-black/10 backdrop-blur-sm shadow-md hover:shadow-xl transition-shadow rounded-[30px] lg:w-[30%] md:w-[45%] w-[95%] overflow-hidden">
       <figure className="relative w-full h-0 pb-[66.66%] overflow-hidden  shadow-sm group">
         <Image
-          alt={property.title}
-          src={property.image || "/property-placeholder.jpg"}
-          fill
+          alt={property.title || "Property Image"}
+          src={property.image || placeholderImage} 
+          layout="fill" 
+          objectFit="cover" 
           className="object-cover group-hover:scale-102 transition-transform duration-300 ease-in-out"
-          sizes="(max-width: 768px) 100vw, 33vw"
-          priority={property.featured}
+          priority={property.featured} 
         />
       </figure>
 

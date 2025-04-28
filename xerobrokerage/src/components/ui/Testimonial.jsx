@@ -96,7 +96,7 @@ const Testimonials = () => {
                 className='w-20 h-20 rounded-full mx-auto mb-4'
                 onError={e => {
                   e.target.onError = null
-                  e.target.src = testimonial.alt
+                  // e.target.src = testimonial.alt
                 }}
               />
               <div className='text-yellow-400 flex justify-center mb-4'>

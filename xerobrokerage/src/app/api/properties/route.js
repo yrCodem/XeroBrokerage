@@ -1,7 +1,6 @@
 import { connectDB } from "@/lib/db";
 import PropertyModel from "@/lib/models/Property";
-import cloudinary from "@/lib/cloudinary";
-
+import { uploadToCloudinary } from "@/lib/uploadToCloudinary";
 
 export async function GET() {
   try {
@@ -9,71 +8,94 @@ export async function GET() {
     const listings = await PropertyModel.find({});
     return Response.json({ success: true, listings });
   } catch (err) {
-    return new Response(JSON.stringify({ success: false, error: "Failed to fetch listings." }), {
-      status: 500,
-    });
+    console.error("FETCH ERROR:", err);
+    return new Response(
+      JSON.stringify({ success: false, error: "Failed to fetch listings." }),
+      { status: 500 }
+    );
   }
 }
-
 export async function POST(req) {
   try {
-    await connectDB(); 
+    await connectDB();
 
     const formData = await req.formData();
+    const images = formData.get("images");
 
     const title = formData.get("title");
-    const price = formData.get("price");
+    const price = Number(formData.get("price")?.replace(/,/g, ""));
     const address = formData.get("address");
-    const beds = formData.get("beds");
-    const baths = formData.get("baths");
-    const file = formData.get("image");
+    const size = Number(formData.get("size"));
+    const beds = Number(formData.get("beds"));
+    const baths = Number(formData.get("baths"));
+    const bhkConfig = formData.get("bhkConfig");
+    const furnishingStatus = formData.get("furnishingStatus");
+    const propertyType = formData.get("propertyType");
+    const flooringType = formData.get("flooringType");
+    const possessionDate = new Date(formData.get("possessionDate"));
+    const maintainence = Number(formData.get("maintainence"));
+    const description = formData.get("description");
+    const amenities = JSON.parse(formData.get("amenities") || "[]");
 
-    if (!title || !price || !address || !beds || !baths || !file) {
-      return new Response(JSON.stringify({ error: "Missing required fields" }), {
-        status: 400,
-      });
+    if (
+      !title ||
+      isNaN(price) ||
+      !address ||
+      isNaN(size) ||
+      isNaN(beds) ||
+      isNaN(baths) ||
+      !bhkConfig ||
+      !furnishingStatus ||
+      !propertyType ||
+      !flooringType ||
+      isNaN(possessionDate.getTime()) ||
+      isNaN(maintainence) ||
+      !description ||
+      !images 
+    ) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Missing or invalid required fields.",
+        }),
+        { status: 400 }
+      );
     }
 
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
 
-    const uploadResult = await new Promise((resolve, reject) => {
-      cloudinary.uploader.upload_stream(
-        {
-          folder: "properties",
-          resource_type: "image",
-        },
-        (error, result) => {
-          if (error) reject(error);
-          else resolve(result);
-        }
-      ).end(buffer);
-    });
-
-    const imageUrl = uploadResult.secure_url;
-
+    // Create property
     const newProperty = await PropertyModel.create({
       title,
       price,
       address,
+      size,
       beds,
       baths,
-      image: imageUrl,
+      bhkConfig,
+      furnishingStatus,
+      propertyType,
+      flooringType,
+      possessionDate,
+      maintainence,
+      description,
+      amenities,
+      images,
       uploadedAt: new Date(),
     });
 
-    return new Response(JSON.stringify({ success: true, property: newProperty }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
-
+    return new Response(
+      JSON.stringify({ success: true, property: newProperty }),
+      { status: 200, headers: { "Content-Type": "application/json" } }
+    );
+    
   } catch (err) {
     console.error("UPLOAD ERROR:", err);
-    return new Response(JSON.stringify({ success: false, error: err.message }), {
-      status: 500,
-    });
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: err.message || "Something went wrong.",
+      }),
+      { status: 500 }
+    );
   }
 }
-
-
-

@@ -22,9 +22,46 @@ const PropertySchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    image: {
+    size: {
+      type: Number,
+      required: [true, "Size is required"],
+    },
+    maintainence: {
+      type: Number,
+      required: [true, "Maintenance is required"],
+    },
+    bhkConfig: {
       type: String,
-      default: "", 
+      required: [true, "BHK configuration is required"],
+    },
+    furnishingStatus: {
+      type: String,
+      required: [true, "Furnishing status is required"],
+    },
+    propertyType: {
+      type: String,
+      required: [true, "Property type is required"],
+    },
+    flooringType: {
+      type: String,
+      required: [true, "Flooring type is required"],
+    },
+    possessionDate: {
+      type: Date,
+      required: [true, "Possession date is required"],
+    },
+    description: {
+      type: String,
+      required: [true, "Description is required"],
+      maxlength: 2000,
+    },
+    amenities: {
+      type: [String], 
+      default: [],
+    },
+    images: {
+      type: [String],  
+      required: [true, "At least one image is required"],
     },
   },
   {
