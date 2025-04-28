@@ -10,6 +10,7 @@ export default function FeaturedListings() {
   
   useEffect(() => {
     axios.get("/api/properties").then(res => setProperties(res.data.listings) )
+    
   }, [])
 
   return (

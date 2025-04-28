@@ -8,7 +8,7 @@ export default function PropertyCard({ property }) {
       <figure className="relative w-full h-0 pb-[66.66%] overflow-hidden  shadow-sm group">
         <Image
           alt={property.title || "Property Image"}
-          src={property.image || placeholderImage} 
+          src={property.images[0] || placeholderImage} 
           layout="fill" 
           objectFit="cover" 
           className="object-cover group-hover:scale-102 transition-transform duration-300 ease-in-out"
