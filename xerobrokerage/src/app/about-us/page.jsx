@@ -84,6 +84,19 @@ const AboutUsPage = () => {
                   className='w-full h-full object-cover'
                 />
               </div>
+              <div className='absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-md border border-gray-100'>
+                <div className='flex items-center'>
+                  <div className='bg-blue-100 p-3 rounded-full mr-3'>
+                    <FiHome className='text-blue-600' />
+                  </div>
+                  <div>
+                    <p className='font-bold text-gray-800'>25+ Years</p>
+                    <p className='text-sm text-gray-500'>
+                      In Raipur Real Estate
+                    </p>
+                  </div>
+                </div>
+              </div>
               {/* <div className='bg-blue-100 rounded-2xl p-8 shadow-lg'>
                 <div className='aspect-w-16 aspect-h-9 bg-gray-200 rounded-xl overflow-hidden'>
                   <img
