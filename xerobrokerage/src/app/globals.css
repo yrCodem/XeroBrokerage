@@ -3,7 +3,14 @@
 @import 'tailwindcss';
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #cec6a4 inset !important;
+  box-shadow: 0 0 0 1000px #cec6a4 inset !important;
+  -webkit-text-fill-color: #000 !important;
+  caret-color: black !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 
 
 .playfair-display {
