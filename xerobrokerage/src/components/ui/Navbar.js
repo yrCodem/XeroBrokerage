@@ -97,7 +97,7 @@ function NavLinks({ onClick }) {
         About Us
       </Link> */}
       <Link
-        href='/login'
+        href='/Auth/login'
         onClick={onClick}
         className='flex items-center gap-2 p-2'
       >
