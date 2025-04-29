@@ -107,7 +107,7 @@ const Testimonials = () => {
               <p className='text-textColor italic mb-4'>
                 "{testimonial.quote}"
               </p>
-              <h3 className='font-bold text-gray-300'>{testimonial.name}</h3>
+              <h3 className='font-bold text-gray-600'>{testimonial.name}</h3>
               <p className='text-gray-500'>{testimonial.role}</p>
             </motion.div>
           ))}

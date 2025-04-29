@@ -1,28 +1,15 @@
 'use client'
-import styled from 'styled-components'
 
 const AuthLayout = ({ children }) => {
   return (
-    <StyledWrapper>
-      <div className='auth-container'>{children}</div>
-    </StyledWrapper>
+    <div className='fixed inset-0 overflow-hidden bg-gray-50'>
+      <div className='absolute inset-0 flex justify-center items-center p-5'>
+        <div className='w-full max-w-[450px] max-h-[calc(100vh-40px)] overflow-y-auto py-5 scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-300'>
+          {children}
+        </div>
+      </div>
+    </div>
   )
 }
-
-const StyledWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f5f7fa;
-  padding: 20px;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-  .auth-container {
-    width: 100%;
-    max-width: 450px;
-  }
-`
 
 export default AuthLayout
