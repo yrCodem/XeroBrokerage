@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 import Link from 'next/link'
-import AuthLayout from '../layout/page'
+import AuthLayout from '../../layout/page'
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({

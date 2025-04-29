@@ -105,13 +105,19 @@ const LoginForm = () => {
           type='submit'
           disabled={isSubmitting}
         >
-          {isSubmitting ? <span className='spinn
-          disabled={isSubmitting}er'></span> : 'Sign In'}
+          {isSubmitting ? (
+            <span
+              className='spinn
+          disabled={isSubmitting}er'
+            ></span>
+          ) : (
+            'Sign In'
+          )}
         </button>
 
         <p className='p'>
           Don't have an account?{' '}
-          <Link href='../../Auth/signup' className='span'>
+          <Link href='../../Auth/login/signup' className='span'>
             Sign Up
           </Link>
         </p>
