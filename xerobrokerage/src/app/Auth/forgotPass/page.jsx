@@ -66,7 +66,7 @@ const ForgotPasswordForm = () => {
 
         <p className='login-link'>
           Remember your password?{' '}
-          <Link href='../login' className='span'>
+          <Link href='../../Auth/login' className='span'>
             Log in
           </Link>
         </p>

@@ -171,11 +171,11 @@ const SignupForm = () => {
           />
           <label htmlFor='agreeTerms'>
             I agree to the{' '}
-            <Link href='/terms' className='terms-link'>
+            <Link href='../../terms-and-conditions' className='terms-link'>
               Terms of Service
             </Link>{' '}
             and{' '}
-            <Link href='/privacy' className='terms-link'>
+            <Link href='../../privacy-page' className='terms-link'>
               Privacy Policy
             </Link>
           </label>
@@ -194,7 +194,7 @@ const SignupForm = () => {
 
         <p className='login-link'>
           Already have an account?{' '}
-          <Link href='/login' className='span'>
+          <Link href='../../Auth/login' className='span'>
             Log in
           </Link>
         </p>
