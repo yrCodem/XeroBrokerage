@@ -29,7 +29,7 @@ export default function BuyOrSell() {
       >
 
         <Link href="/properties">
-          <button className="px-10 py-4 bg-black text-white rounded-xl hover:scale-105 transition-transform text-2xl">
+          <button className="px-10 py-4 bg-black text-white rounded-xl hover:scale-105 transition-transform text-2xl w-[60vw] lg:w-fit">
             Explore Properties
           </button>
         </Link>
@@ -39,7 +39,8 @@ export default function BuyOrSell() {
 
 
         <Link href="/upload-property">
-          <button className="px-10 py-4 bg-black text-white rounded-xl hover:scale-105 transition-transform text-2xl">
+          <button className="
+px-10 py-4 bg-black text-white rounded-xl hover:scale-105 transition-transform text-2xl w-[60vw] lg:w-fit">
             Sell My Property
           </button>
         </Link>

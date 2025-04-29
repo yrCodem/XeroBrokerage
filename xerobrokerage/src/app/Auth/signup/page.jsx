@@ -8,57 +8,111 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-
-import forgotPass from "../forgotPass/page";
-import ForgotPasswordForm from "../forgotPass/page";
-
-const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+const SignupForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    agreeTerms: false,
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const { login } = useAuth();
+  const [errors, setErrors] = useState({});
   const router = useRouter();
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name) newErrors.name = "Name is required";
+    if (!formData.email) newErrors.email = "Email is required";
+    else if (!/^\S+@\S+\.\S+$/.test(formData.email))
+      newErrors.email = "Email is invalid";
+    if (!formData.password) newErrors.password = "Password is required";
+    else if (formData.password.length < 8)
+      newErrors.password = "Password must be at least 8 characters";
+    if (formData.password !== formData.confirmPassword)
+      newErrors.confirmPassword = "Passwords do not match";
+    if (!formData.agreeTerms)
+      newErrors.agreeTerms = "You must agree to the terms";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    const url = "http://localhost:3000/api/auth/login";
-    const values = { email, password };
+    if (validate()) {
+      console.log(formData);
+      setIsSubmitting(true);
+      const url = "http://localhost:3000/api/auth/signup";
+      const values = formData;
 
-    try {
-      const response = await axios.post(url, values, { withCredentials: true });
-      if (response.data.success) {
-        login(response.data.token, response.data.user);
-        toast.success("Logged in successfully!", {
+      try {
+        const response = await axios.post(url, values, {
+          withCredentials: true,
+        });
+
+        if (response.data.success) {
+          toast.success("Registered Successfully..!", {
+            theme: "dark",
+            position: "bottom-right",
+            autoClose: 3000,
+          });
+        }
+        router.push("/Auth/login");
+      } catch (err) {
+        console.log(err);
+
+        toast.error(err.response.data.message || "error", {
           theme: "dark",
           position: "bottom-right",
           autoClose: 3000,
         });
+      } finally {
+        setIsSubmitting(false);
       }
-      router.push("/");
-    } catch (err) {
-      toast.error(err.response.data.message, {
-        theme: "dark",
-        position: "bottom-right",
-        autoClose: 3000,
-      });
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
   return (
     <AuthLayout>
       <StyledForm onSubmit={handleSubmit}>
-        <h2 className="form-title">XeroBrokerage</h2>
+        <h2 className="form-title">Create Account</h2>
+        <p className="form-subtitle">Join XeroBrokerage today</p>
 
         <div className="input-group">
-          <div className="flex-column">
-            <label>Email</label>
+          <label>Full Name</label>
+          <div className={`inputForm ${errors.name ? "error" : ""}`}>
+            <svg
+              height={20}
+              viewBox="0 0 24 24"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+            </svg>
+            <input
+              type="text"
+              name="name"
+              className="input"
+              placeholder="Enter your full name"
+              value={formData.name}
+              onChange={handleChange}
+            />
           </div>
-          <div className="inputForm">
+          {errors.name && <div className="error-message">{errors.name}</div>}
+        </div>
+
+        <div className="input-group">
+          <label>Email</label>
+          <div className={`inputForm ${errors.email ? "error" : ""}`}>
             <svg
               height={20}
               viewBox="0 0 32 32"
@@ -71,20 +125,19 @@ const LoginForm = () => {
             </svg>
             <input
               type="email"
+              name="email"
               className="input"
-              placeholder="Enter your Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
             />
           </div>
+          {errors.email && <div className="error-message">{errors.email}</div>}
         </div>
 
         <div className="input-group">
-          <div className="flex-column">
-            <label>Password</label>
-          </div>
-          <div className="inputForm">
+          <label>Password</label>
+          <div className={`inputForm ${errors.password ? "error" : ""}`}>
             <svg
               height={20}
               viewBox="-64 0 512 512"
@@ -96,61 +149,85 @@ const LoginForm = () => {
             </svg>
             <input
               type="password"
+              name="password"
               className="input"
-              placeholder="Enter your Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+              placeholder="Create a password"
+              value={formData.password}
+              onChange={handleChange}
             />
-            <svg
-              viewBox="0 0 576 512"
-              height="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z" />
-            </svg>
           </div>
+          {errors.password && (
+            <div className="error-message">{errors.password}</div>
+          )}
         </div>
 
-        <div className="flex-row">
-          <div className="remember-me">
+        <div className="input-group">
+          <label>Confirm Password</label>
+          <div className={`inputForm ${errors.confirmPassword ? "error" : ""}`}>
+            <svg
+              height={20}
+              viewBox="-64 0 512 512"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0" />
+              <path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0" />
+            </svg>
             <input
-              type="checkbox"
-              id="rememberMe"
-              checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
+              type="password"
+              name="confirmPassword"
+              className="input"
+              placeholder="Confirm your password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
             />
-            <label htmlFor="rememberMe">Remember me</label>
           </div>
-          <Link href="../../Auth/forgotPass" className="span">
-            Forgot password?
-          </Link>
+          {errors.confirmPassword && (
+            <div className="error-message">{errors.confirmPassword}</div>
+          )}
         </div>
+
+        <div className="terms-group">
+          <input
+            type="checkbox"
+            id="agreeTerms"
+            name="agreeTerms"
+            checked={formData.agreeTerms}
+            onChange={handleChange}
+          />
+          <label htmlFor="agreeTerms">
+            I agree to the{" "}
+            <Link href="../../terms-and-conditions" className="terms-link">
+              Terms of Service
+            </Link>{" "}
+            and{" "}
+            <Link href="../../privacy-page" className="terms-link">
+              Privacy Policy
+            </Link>
+          </label>
+        </div>
+        {errors.agreeTerms && (
+          <div className="error-message">{errors.agreeTerms}</div>
+        )}
 
         <button
           className={`button-submit ${isSubmitting ? "submitting" : ""}`}
           type="submit"
           disabled={isSubmitting}
         >
-          {isSubmitting ? (
-            <span
-              className="spinner"
-            ></span>
-          ) : (
-            "Sign In"
-          )}
+          {isSubmitting ? <span className="spinner"></span> : "Create Account"}
         </button>
 
-        <p className='p'>
-          Don't have an account?{' '}
-          <Link href='../../Auth/signup' className='span'>
-            Sign Up
+        <p className="login-link">
+          Already have an account?{" "}
+          <Link href="../../Auth/login" className="span">
+            Log in
           </Link>
         </p>
 
         <div className="divider">
           <span className="divider-line"></span>
-          <span className="divider-text">Or With</span>
+          <span className="divider-text">Or sign up with</span>
           <span className="divider-line"></span>
         </div>
 
@@ -253,7 +330,14 @@ const StyledForm = styled.form`
     color: #151717;
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+  }
+
+  .form-subtitle {
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 20px;
   }
 
   .input-group {
@@ -262,7 +346,7 @@ const StyledForm = styled.form`
     gap: 8px;
   }
 
-  .flex-column > label {
+  label {
     color: #151717;
     font-weight: 600;
     font-size: 14px;
@@ -280,6 +364,10 @@ const StyledForm = styled.form`
 
     &:hover {
       border-color: #c0c0c0;
+    }
+
+    &.error {
+      border-color: #ef4444;
     }
   }
 
@@ -303,23 +391,22 @@ const StyledForm = styled.form`
     box-shadow: 0 0 0 3px rgba(45, 121, 243, 0.1);
   }
 
-  .flex-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    justify-content: space-between;
-    margin-top: 5px;
+  .error-message {
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 4px;
   }
 
-  .remember-me {
+  .terms-group {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
+    margin: 10px 0;
 
     input {
       accent-color: #2d79f3;
-      width: 16px;
+      margin-top: 3px;
+      min-width: 16px;
       height: 16px;
       cursor: pointer;
     }
@@ -329,6 +416,18 @@ const StyledForm = styled.form`
       color: #4b5563;
       cursor: pointer;
       user-select: none;
+      font-weight: 400;
+      text-align: left;
+    }
+  }
+
+  .terms-link {
+    color: #2d79f3;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 
@@ -347,7 +446,7 @@ const StyledForm = styled.form`
   }
 
   .button-submit {
-    margin: 15px 0 10px 0;
+    margin: 10px 0;
     background-color: #151717;
     border: none;
     color: white;
@@ -386,7 +485,7 @@ const StyledForm = styled.form`
     animation: ${spin} 1s ease-in-out infinite;
   }
 
-  .p {
+  .login-link {
     text-align: center;
     color: #6b7280;
     font-size: 14px;
@@ -446,13 +545,6 @@ const StyledForm = styled.form`
     }
   }
 
-  .password-hint {
-    font-size: 12px;
-    color: #6b7280;
-    margin-top: 4px;
-    font-family: monospace;
-  }
-
   @media (max-width: 480px) {
     padding: 30px 20px;
 
@@ -462,4 +554,4 @@ const StyledForm = styled.form`
   }
 `;
 
-export default LoginForm;
+export default SignupForm;

@@ -8,7 +8,6 @@ import {
   FiMapPin,
   FiAward,
 } from 'react-icons/fi'
-// import {  } from "../../app/journey-modal/page";
 import JoinJourneyModal from '../../app/journey-modal/page'
 import { useState } from 'react'
 import Link from 'next/link'
