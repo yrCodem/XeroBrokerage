@@ -49,22 +49,22 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='flex fixed justify-center items-center h-screen w-screen bg-gray-50 p-5 overflow-hidden inset-0'>
+    <div className='flex justify-center items-center h-fit w-screen p-5 overflow-hidden inset-0'>
       <div className='w-full max-w-md max-h-[calc(100vh-40px)] overflow-y-auto'>
         <form
           onSubmit={handleSubmit}
-          className='flex flex-col gap-5 bg-white p-10 rounded-xl shadow-lg animate-fade-in'
+          className='flex flex-col gap-5 bg-black/10 p-10 rounded-xl shadow-lg animate-fade-in'
         >
-          <h2 className='text-center text-2xl font-bold text-gray-800 mb-2'>
+          <h2 className='text-center text-2xl font-bold text-black mb-2'>
             XeroBrokerage
           </h2>
 
           {/* Email Input */}
           <div className='flex flex-col gap-2'>
-            <label className='text-sm font-semibold text-gray-800'>Email</label>
-            <div className='flex items-center border border-gray-200 rounded-lg h-12 px-3 bg-gray-50 hover:border-gray-300 transition-colors focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200'>
+            <label className='text-sm font-semibold text-black'>Email</label>
+            <div className='flex items-center rounded-lg h-12 px-3 bg-black/10'>
               <svg
-                className='w-5 h-5 text-gray-400'
+                className='w-5 h-5 text-black'
                 viewBox='0 0 32 32'
                 fill='currentColor'
               >
@@ -72,7 +72,7 @@ const LoginForm = () => {
               </svg>
               <input
                 type='email'
-                className='ml-2 w-full h-full bg-transparent outline-none text-sm text-gray-700'
+                className='ml-2 w-full h-full bg-transparent outline-none text-sm text-black'
                 placeholder='Enter your Email'
                 value={email}
                 onChange={e => setEmail(e.target.value)}
@@ -83,12 +83,12 @@ const LoginForm = () => {
 
           {/* Password Input */}
           <div className='flex flex-col gap-2'>
-            <label className='text-sm font-semibold text-gray-800'>
+            <label className='text-sm font-semibold text-black'>
               Password
             </label>
-            <div className='flex items-center border border-gray-200 rounded-lg h-12 px-3 bg-gray-50 hover:border-gray-300 transition-colors focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200'>
+            <div className='flex items-center rounded-lg h-12 px-3 bg-black/10'>
               <svg
-                className='w-5 h-5 text-gray-400'
+                className='w-5 h-5 text-black'
                 viewBox='-64 0 512 512'
                 fill='currentColor'
               >
@@ -97,7 +97,7 @@ const LoginForm = () => {
               </svg>
               <input
                 type={showPassword ? 'text' : 'password'}
-                className='ml-2 w-full h-full bg-transparent outline-none text-sm text-gray-700'
+                className='ml-2 w-full h-full bg-transparent outline-none text-sm text-black'
                 placeholder='Enter your Password'
                 value={password}
                 onChange={e => setPassword(e.target.value)}
@@ -106,7 +106,7 @@ const LoginForm = () => {
               <button
                 type='button'
                 onClick={togglePasswordVisibility}
-                className='text-gray-400 hover:text-gray-600 focus:outline-none'
+                className='text-black hover:text-gray-600 focus:outline-none'
               >
                 {showPassword ? (
                   <svg
@@ -138,18 +138,18 @@ const LoginForm = () => {
                 id='rememberMe'
                 checked={rememberMe}
                 onChange={e => setRememberMe(e.target.checked)}
-                className='w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500'
+                className='w-4 h-4 text-blue-900 rounded '
               />
               <label
                 htmlFor='rememberMe'
-                className='text-sm text-gray-600 cursor-pointer select-none'
+                className='text-sm text-black cursor-pointer select-none'
               >
                 Remember me
               </label>
             </div>
             <Link
               href='../../Auth/forgotPass'
-              className='text-sm text-blue-600 font-medium hover:text-blue-800 hover:underline transition-colors'
+              className='text-sm text-blue-900 font-medium hover:underline transition-colors'
             >
               Forgot password?
             </Link>
@@ -161,8 +161,8 @@ const LoginForm = () => {
             disabled={isSubmitting}
             className={`mt-3 w-full h-12 rounded-lg font-medium text-white transition-all ${
               isSubmitting
-                ? 'bg-gray-800 cursor-not-allowed'
-                : 'bg-gray-900 hover:bg-gray-800 active:translate-y-0.5'
+                ? 'bg-black cursor-not-allowed'
+                : 'bg-black hover:bg-black/90 active:translate-y-0.5'
             }`}
           >
             {isSubmitting ? (
@@ -175,11 +175,11 @@ const LoginForm = () => {
           </button>
 
           {/* Sign Up Link */}
-          <p className='text-center text-sm text-gray-600 mt-1'>
+          <p className='text-center text-sm text-black mt-1'>
             Don't have an account?{' '}
             <Link
               href='../../Auth/signup'
-              className='text-blue-600 font-medium hover:text-blue-800 hover:underline transition-colors'
+              className='text-blue-900 font-medium hover:underline transition-colors'
             >
               Sign Up
             </Link>
@@ -187,18 +187,18 @@ const LoginForm = () => {
 
           {/* Divider */}
           <div className='flex items-center my-2'>
-            <div className='flex-1 h-px bg-gray-200'></div>
-            <span className='px-3 text-xs text-gray-500 uppercase'>
+            <div className='flex-1 h-px bg-gray-900'></div>
+            <span className='px-3 text-xs text-black uppercase'>
               Or With
             </span>
-            <div className='flex-1 h-px bg-gray-200'></div>
+            <div className='flex-1 h-px bg-gray-900'></div>
           </div>
 
           {/* Social Buttons */}
           <div className='flex gap-3'>
             <button
               type='button'
-              className='flex-1 flex justify-center items-center gap-2 h-12 rounded-lg border border-gray-200 bg-white text-gray-700 font-medium hover:bg-gray-50 hover:border-gray-300 transition-colors'
+              className='flex-1 flex justify-center items-center gap-2 h-12 rounded-lg bg-white text-black font-medium '
             >
               <svg
                 className='w-5 h-5'
@@ -226,7 +226,7 @@ const LoginForm = () => {
             </button>
             <button
               type='button'
-              className='flex-1 flex justify-center items-center gap-2 h-12 rounded-lg border border-gray-200 bg-white text-gray-700 font-medium hover:bg-gray-50 hover:border-gray-300 transition-colors'
+              className='flex-1 flex justify-center items-center gap-2 h-12 rounded-lg bg-white text-black font-medium'
             >
               <svg
                 className='w-5 h-5'
