@@ -6,7 +6,7 @@ import { LayoutGroup, motion } from 'motion/react'
 
 const Hero = () => {
   return (
-    <div className=" poppins-bold text-5xl flex flex-col gap-4 items-center justify-center font-light overflow-hidden p-8 sm:p-12 md:p-14 bg-[#ffdf4d]">
+    <div className=" poppins-bold text-3xl md:text-5xl flex flex-col gap-4 items-center justify-center font-light overflow-hidden p-8 sm:p-12 md:p-14 bg-[#ffdf4d]">
       <LayoutGroup>
         <motion.div
           className="flex whitespace-pre flex-col md:flex-row justifu-center items-center lg:gap-0 gap-2"

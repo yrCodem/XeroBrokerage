@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <body className="bg-[#fff6cc] ">
         <AuthProvider>
           <Navbar />
-          <main className="max-h-[90vh] max-w-screen relative top-[8vh]">
+          <main className="max-h-[90vh] max-w-screen relative top-[79px]">
             {children}
           </main>
           <ToastContainer />

@@ -25,7 +25,7 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <nav className="header fixed min-w-screen min-h-16 lg:min-h-20 bg-[#ffdf4d] flex justify-between items-center lg:px-6 px-4 z-50">
+    <nav className="header fixed min-w-screen min-h-20 lg:min-h-20 bg-[#ffdf4d] flex justify-between items-center lg:px-6 px-4 z-50">
       <Link href="/" className="playfair-display text-3xl">
         <div className="flex items-center justify-center">
           <span>
