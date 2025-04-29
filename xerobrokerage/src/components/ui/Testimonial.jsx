@@ -5,7 +5,7 @@ const testimonials = [
   {
     name: 'Umair Malik',
     role: 'Owner',
-    image: 'https://api.multiavatar.com/BinxBond.svg',
+    image: '/Umair.svg',
     type: 'image/svg+xml',
     // alt: 'https://ui-avatars.com/api/?name=Umair+Malik',
     quote:
@@ -15,8 +15,8 @@ const testimonials = [
   {
     name: 'Dr. Nitin Kumar Mishra',
     role: 'Tenant',
-    image: 'https://api.multiavatar.com/06.svg',
-    alt: 'https://ui-avatars.com/api/?name=Nitin+Kumar+Mishra',
+    image: '/nitin.svg',
+    // alt: 'https://ui-avatars.com/api/?name=Nitin+Kumar+Mishra',
     quote:
       'Brilliant concept of connecting Owners & Tenants directly. I greatly appreciate the entire Nobroker team for the innovative idea. I would like to see this company grow into various ventures & make the entire system a broker free community.',
     rating: 5,
@@ -24,8 +24,8 @@ const testimonials = [
   {
     name: 'James Wilson',
     role: 'Owner',
-    image: 'https://api.multiavatar.com/13.svg',
-    alt: 'https://ui-avatars.com/api/?name=James+Wilson',
+    image: '/james.svg',
+    // alt: 'https://ui-avatars.com/api/?name=James+Wilson',
     quote:
       'I was really impressed with the response I got from XeroBroker. I was concerned it would take a long time, and I really needed to get my property rented out faster. Quick, informative & Reliable is what I feel after using XeroBrokerage.in',
     rating: 5,
@@ -33,8 +33,8 @@ const testimonials = [
   {
     name: 'Neha Verma',
     role: 'Tenant',
-    image: 'https://api.multiavatar.com/07.svg',
-    alt: 'https://ui-avatars.com/api/?name=Neha+Verma',
+    image: '/neha.svg',
+    // alt: 'https://ui-avatars.com/api/?name=Neha+Verma',
     quote:
       "Unique concept excellent service. Nobroker helped me get a tenant in less than 24hours. If that's not fast I don't know what is.",
     rating: 5,
@@ -42,8 +42,8 @@ const testimonials = [
   {
     name: 'Ishi Pathak',
     role: 'Owner',
-    image: 'https://api.multiavatar.com/14.svg',
-    alt: 'https://ui-avatars.com/api/?name=Ishi+Pathak',
+    image: '/LongHairGirl.svg',
+    // alt: 'https://ui-avatars.com/api/?name=Ishi+Pathak',
     quote:
       'One of the best website I have come across in the recent times to rent out a property online. I must say I am very pleased with the response I got from XeroBroker in getting the right tenant as per my preferences mentioned on the website. I am very satisfied & I have already recommended XeroBrokerage.in to all my friends. Good job Team.',
     rating: 4,
@@ -51,8 +51,8 @@ const testimonials = [
   {
     name: 'Arjun Rao',
     role: 'Owner',
-    image: 'https://api.multiavatar.com/15.svg',
-    alt: 'https://ui-avatars.com/api/?name=Arjun+Rao',
+    image: '/arjun.svg',
+    // alt: 'https://ui-avatars.com/api/?name=Arjun+Rao',
     quote:
       "I'm happy as the XeroBroker team took the initiative to post my property on there website. All I had to do was provide the information over the phone & send the photos through WhatsApp. I'm extremely happy as my property was rented out faster than I expected without me having to pay any brokerage whatsoever. Thanks to XeroBroker team",
     rating: 4,
