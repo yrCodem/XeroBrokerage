@@ -1,5 +1,4 @@
 import Navbar from '@/components/ui/Navbar'
-import { WavyBackground } from '@/components/ui/wavy-background'
 import './globals.css'
 
 export const metadata = {
@@ -10,15 +9,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className='bg-[#ffffff] '>
-        {' '}
-        {/* bg-[#FAEDCD]*/}
+      <body className='bg-[#fff6cc] '>
         <Navbar />
-        {/* <WavyBackground className="min-w-screen overflow-hidden" backgroundFill={"#FAEDCD"}> */}
-        <main className='max-h-[90vh] max-w-screen relative top-[10vh]'>
+        <main className='max-h-[90vh] max-w-screen relative top-[8vh]'>
           {children}
         </main>
-        {/* </WavyBackground> */}
+
       </body>
     </html>
   )

@@ -33,7 +33,7 @@ export default function PropertySearch() {
           <option className='text-xl p-2 poppins-semibold'>Flat</option>
         </select>
 
-        <button className='bg-[#ff5941] flex flex-row items-center justify-center p-4 rounded-sm border border-black sm:border-0 max-w-md'>
+        <button className='bg-black flex flex-row items-center justify-center p-4 rounded-sm border border-black sm:border-0 max-w-md'>
           {' '}
           <svg
             xmlns='http://www.w3.org/2000/svg'
