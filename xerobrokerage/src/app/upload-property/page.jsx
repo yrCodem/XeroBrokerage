@@ -1,5 +1,5 @@
 "use client";
-import { CldUploadButton } from "next-cloudinary";
+import { CldUploadWidget } from "next-cloudinary";
 
 import { useState, useRef, useEffect } from "react";
 import {
@@ -10,11 +10,11 @@ import {
   FiCheckCircle,
 } from "react-icons/fi";
 
-
 export default function Upload() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [uploadedUrl, setUploadedUrl] = useState("");
+  const [preview, setPreview] = useState("");
 
   // const [fileName, setFileName] = useState("");
   const [errors, setErrors] = useState({
@@ -83,7 +83,6 @@ export default function Upload() {
         : [...prev, amenity]
     );
   };
-
 
   const formatCurrency = (e) => {
     let value = e.target.value.replace(/\D/g, "");
@@ -430,15 +429,44 @@ export default function Upload() {
               <h2 className="text-2xl font-bold text-blue-800 border-b pb-2">
                 Property Images
               </h2>
-              <CldUploadButton
+
+              <CldUploadWidget
                 uploadPreset="unsigned-upload"
-                onSuccess={(result) => {
-                  console.log(result);
-                  setUploadedUrl(result.info.secure_url);
+                onSuccessAction={(result) => {
+                  console.log("Upload Success:", result);
+                  const url = result?.info?.secure_url;
+                  console.log("Extracted URL:", url); 
+                  if (url) {
+                    setUploadedUrl(url);
+                    setPreview(url);
+                  }
                 }}
               >
-                Upload Image
-              </CldUploadButton>
+                {({ open }) => {
+                  return (
+                    <button
+                      className="w-full p-8 bg-blue-100 poppins-bold rounded-xl border border-blue-800"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        open();
+                      }}
+                    >
+                      Upload an Image
+                    </button>
+                  );
+                }}
+              </CldUploadWidget>
+              {preview && (
+                <div className="mt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <img
+                      src={preview}
+                      alt="Preview"
+                      className="rounded-lg border border-gray-200 h-64 object-cover"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Description Section */}
