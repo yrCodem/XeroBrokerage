@@ -1,12 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { motion, AnimatePresence } from "framer-motion";
+import TermsAndConditions from "@/app/terms-and-conditions/page";
 
 const SignupForm = () => {
+  const menuRef = useRef(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,7 +22,14 @@ const SignupForm = () => {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
   const router = useRouter();
+
+  const handleTerms = (e) => {
+    e.preventDefault();
+    setModalOpen(true);
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -88,6 +99,57 @@ const SignupForm = () => {
 
   return (
     <div className="inset-0 overflow-hidden ">
+      <AnimatePresence>
+        {modalOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-black/20 z-40 backdrop-blur-md"
+            />
+
+            <motion.div
+              ref={menuRef}
+              initial={{ opacity: 0, scale: 0.9, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="absolute top-[10px] left-1/2 transform -translate-x-1/2 w-[90vw] md:w-[70vw] lg:w-[50vw] bg-black/70 flex flex-col gap-4 p-4 poppins-semibold z-40 shadow-md backdrop-blur-md rounded-xl"
+            >
+              <div className="flex flex-col items-center mb-2 gap-4">
+                <div className="w-full flex justify-end">
+                  <button
+                    onClick={() => setModalOpen(false)}
+                    className="text-white text-4xl poppins-regular"
+                    aria-label="Close menu"
+                  >
+                    &times;
+                  </button>
+                </div>
+                <div className="bg-white rounded-2xl">
+                  <TermsAndConditions />
+                </div>
+
+                <button
+                  className="px-6 py-4 w-fit rounded-xl bg-green-600 text-white poppins-bold text-lg m-4"
+                  type="button"
+                  onClick={() => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      agreeTerms: true,
+                    }));
+                    setModalOpen(false);
+                  }}
+                >
+                  ✓ I Agree
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
       <div className="inset-0 flex justify-center items-center p-5">
         <form
           onSubmit={handleSubmit}
@@ -160,9 +222,7 @@ const SignupForm = () => {
 
           {/* Password Input */}
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-black">
-              Password
-            </label>
+            <label className="text-sm font-medium text-black">Password</label>
             <div
               className={`flex items-center rounded-lg h-12 px-3 bg-black/10 transition-colors ${
                 errors.name ? "border-red-500" : ""
@@ -273,31 +333,20 @@ const SignupForm = () => {
           </div>
 
           {/* Terms Checkbox */}
-          <div className="flex items-start gap-2 mt-2">
-            <input
-              type="checkbox"
-              id="agreeTerms"
-              name="agreeTerms"
-              checked={formData.agreeTerms}
-              onChange={handleChange}
-              className="mt-1 w-4 h-4 text-blue-900 rounded"
-            />
-            <label htmlFor="agreeTerms" className="text-sm text-black">
-              I agree to the{" "}
-              <Link
-                href="/terms-and-conditions"
-                className="text-blue-900 hover:underline"
+          <div className="flex flex-col items-center gap-2 mt-2 text-center">
+            {formData.agreeTerms ? (
+              <div className="flex items-center gap-2 text-black font-medium">
+                ✓ Agreed to Terms
+              </div>
+            ) : (
+              <button
+                onClick={handleTerms}
+                type="button"
+                className="px-4 py-2 bg-blue-900 text-white rounded-xl hover:bg-blue-800 transition-all duration-200"
               >
-                Terms of Service
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="../../privacy-page"
-                className="text-blue-900 hover:underline"
-              >
-                Privacy Policy
-              </Link>
-            </label>
+                ✓ Click to Agree Terms & Conditions
+              </button>
+            )}
           </div>
           {errors.agreeTerms && (
             <p className="text-red-500 text-xs -mt-3">{errors.agreeTerms}</p>
