@@ -31,7 +31,7 @@ export default function PrivacyPolicy() {
             })}
           </p>
           <div className='mt-6 bg-blue-500/10 p-4 rounded-lg'>
-            <p className='text-blue-900 flex items-start'>
+            <p className='text-gray-800 flex items-start'>
               <FiInfo className='mr-2 mt-1 flex-shrink-0' />
               Your privacy is important to us. This policy explains how we
               collect, use, and protect your personal information.
@@ -40,8 +40,8 @@ export default function PrivacyPolicy() {
         </header>
 
         {/* Introduction Section */}
-        <section className='mb-12 bg-black/10 p-6 rounded-lg shadow-sm'>
-          <h2 className='text-2xl font-semibold text-gray-900 mb-4'>
+        <section className='mb-12 bg-white p-6 rounded-lg shadow-sm'>
+          <h2 className='text-2xl font-bold text-gray-900 mb-4'>
             Introduction
           </h2>
           <p className='text-gray-900 mb-4'>
@@ -58,20 +58,20 @@ export default function PrivacyPolicy() {
         </section>
 
         {/* Information Collection Section */}
-        <section className='mb-12 bg-black/10 p-6 rounded-lg shadow-sm'>
+        <section className='mb-12 bg-white p-6 rounded-lg shadow-sm'>
           <div className='flex items-center mb-6'>
             <div className='h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center mr-4'>
               <FiDatabase className='text-blue-600' size={20} />
             </div>
-            <h2 className='text-2xl font-semibold text-gray-900'>
+            <h2 className='text-2xl font-bold text-gray-900'>
               Information We Collect
             </h2>
           </div>
 
           <div className='space-y-6 pl-14'>
             <div>
-              <h3 className='text-xl font-medium text-gray-900 mb-3 flex items-center'>
-                <span className='w-6 h-6 bg-black/100 text-white rounded-full flex items-center justify-center mr-3 text-sm'>
+              <h3 className='text-xl font-semibold text-gray-900 mb-3 flex items-center'>
+                <span className='w-6 h-6 bg-yellow-200 text-black font-extrabold rounded-full flex items-center justify-center mr-3 text-sm'>
                   1
                 </span>
                 Personal Identification Information
@@ -85,8 +85,8 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h3 className='text-xl font-medium text-gray-900 mb-3 flex items-center'>
-                <span className='w-6 h-6 bg-black/100 text-white rounded-full flex items-center justify-center mr-3 text-sm'>
+              <h3 className='text-xl font-semibold text-gray-900 mb-3 flex items-center'>
+                <span className='w-6 h-6 bg-yellow-200 text-black font-extrabold rounded-full flex items-center justify-center mr-3 text-sm'>
                   2
                 </span>
                 Property Information
@@ -100,11 +100,11 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h3 className='text-xl font-medium text-gray-900 mb-3 flex items-center'>
-                <span className='w-6 h-6 bg-black/100 text-white rounded-full flex items-center justify-center mr-3 text-sm'>
+              <h3 className='text-xl font-semibold text-gray-900 mb-3 flex items-center'>
+                <span className='w-6 h-6 bg-yellow-200 text-black font-extrabold rounded-full flex items-center justify-center mr-3 text-sm'>
                   3
                 </span>
-                Usage Data
+                Data Usage
               </h3>
               <ul className='space-y-2 list-disc pl-5 text-gray-900'>
                 <li>IP address, browser type and version</li>
@@ -115,8 +115,8 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h3 className='text-xl font-medium text-gray-900 mb-3 flex items-center'>
-                <span className='w-6 h-6 bg-black/100 text-white rounded-full flex items-center justify-center mr-3 text-sm'>
+              <h3 className='text-xl font-semibold text-gray-900 mb-3 flex items-center'>
+                <span className='w-6 h-6 bg-yellow-200 text-black font-extrabold rounded-full flex items-center justify-center mr-3 text-sm'>
                   4
                 </span>
                 Cookies and Tracking Technologies
@@ -136,19 +136,19 @@ export default function PrivacyPolicy() {
         </section>
 
         {/* Use of Data Section */}
-        <section className='mb-12 bg-black/10 p-6 rounded-lg shadow-sm'>
+        <section className='mb-12 bg-white p-6 rounded-lg shadow-sm'>
           <div className='flex items-center mb-6'>
             <div className='h-10 w-10 bg-purple-100 rounded-full flex items-center justify-center mr-4'>
               <FiUser className='text-purple-600' size={20} />
             </div>
-            <h2 className='text-2xl font-semibold text-gray-900'>
+            <h2 className='text-2xl font-bold text-gray-900'>
               How We Use Your Information
             </h2>
           </div>
 
-          <div className='grid md:grid-cols-2 gap-6 pl-14'>
-            <div className='bg-black/10 p-4 rounded-lg'>
-              <h4 className='font-medium text-gray-900 mb-2'>
+          <div className='grid md:grid-cols-2 gap-6 pl-0'>
+            <div className='bg-[#FCE277] p-4 rounded-lg'>
+              <h4 className='font-semibold text-gray-900 mb-2'>
                 Service Provision
               </h4>
               <ul className='space-y-1 list-disc pl-5 text-gray-900'>
@@ -159,8 +159,10 @@ export default function PrivacyPolicy() {
               </ul>
             </div>
 
-            <div className='bg-black/10 p-4 rounded-lg'>
-              <h4 className='font-medium text-gray-900 mb-2'>Communication</h4>
+            <div className='bg-[#FCE277] p-4 rounded-lg'>
+              <h4 className='font-semibold text-gray-900 mb-2'>
+                Communication
+              </h4>
               <ul className='space-y-1 list-disc pl-5 text-gray-900'>
                 <li>To respond to your inquiries</li>
                 <li>To send service-related notices</li>
@@ -169,8 +171,8 @@ export default function PrivacyPolicy() {
               </ul>
             </div>
 
-            <div className='bg-black/10 p-4 rounded-lg'>
-              <h4 className='font-medium text-gray-900 mb-2'>
+            <div className='bg-[#FCE277] p-4 rounded-lg'>
+              <h4 className='font-semibold text-gray-900 mb-2'>
                 Improvement & Analytics
               </h4>
               <ul className='space-y-1 list-disc pl-5 text-gray-900'>
@@ -181,8 +183,8 @@ export default function PrivacyPolicy() {
               </ul>
             </div>
 
-            <div className='bg-black/10 p-4 rounded-lg'>
-              <h4 className='font-medium text-gray-900 mb-2'>
+            <div className='bg-[#FCE277] p-4 rounded-lg'>
+              <h4 className='font-semibold text-gray-900 mb-2'>
                 Legal Compliance
               </h4>
               <ul className='space-y-1 list-disc pl-5 text-gray-900'>
@@ -196,19 +198,22 @@ export default function PrivacyPolicy() {
         </section>
 
         {/* Data Sharing Section */}
-        <section className='mb-12 bg-black/10 p-6 rounded-lg shadow-sm'>
+        <section className='mb-12 bg-white p-6 rounded-lg shadow-sm'>
           <div className='flex items-center mb-6'>
             <div className='h-10 w-10 bg-green-100 rounded-full flex items-center justify-center mr-4'>
               <FiGlobe className='text-green-600' size={20} />
             </div>
-            <h2 className='text-2xl font-semibold text-gray-900'>
+            <h2 className='text-2xl font-bold text-gray-900'>
               Data Sharing and Disclosure
             </h2>
           </div>
 
           <div className='space-y-6 pl-14'>
             <div>
-              <h3 className='text-xl font-medium text-gray-900 mb-3'>
+              <h3 className='text-xl font-semibold text-gray-900 mb-3 flex items-center'>
+                <span className='w-6 h-6 bg-yellow-200 text-black font-extrabold rounded-full flex items-center justify-center mr-3 text-sm'>
+                  1
+                </span>
                 With Other Users
               </h3>
               <ul className='space-y-2 list-disc pl-5 text-gray-900'>
@@ -225,7 +230,10 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h3 className='text-xl font-medium text-gray-900 mb-3'>
+              <h3 className='text-xl font-semibold text-gray-900 mb-3 flex items-center'>
+                <span className='w-6 h-6 bg-yellow-200 text-black font-extrabold rounded-full flex items-center justify-center mr-3 text-sm'>
+                  2
+                </span>
                 With Service Providers
               </h3>
               <ul className='space-y-2 list-disc pl-5 text-gray-900'>
@@ -237,7 +245,10 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h3 className='text-xl font-medium text-gray-900 mb-3'>
+              <h3 className='text-xl font-semibold text-gray-900 mb-3 flex items-center'>
+                <span className='w-6 h-6 bg-yellow-200 text-black font-extrabold rounded-full flex items-center justify-center mr-3 text-sm'>
+                  3
+                </span>
                 For Legal Reasons
               </h3>
               <ul className='space-y-2 list-disc pl-5 text-gray-900'>
@@ -248,8 +259,10 @@ export default function PrivacyPolicy() {
               </ul>
             </div>
 
-            <div className='bg-black/10 p-4 rounded-lg border-l-4 border-blue-400'>
-              <h4 className='font-medium text-gray-900 mb-2'>Important Note</h4>
+            <div className='bg-blue-500/10 p-4  rounded-lg border-l-4 border-blue-400'>
+              <h4 className='font-semibold text-gray-900 mb-2'>
+                Important Note
+              </h4>
               <p className='text-gray-900'>
                 We do not sell your personal information to third parties for
                 marketing purposes. Any sharing of data is strictly for
@@ -260,7 +273,7 @@ export default function PrivacyPolicy() {
         </section>
 
         {/* Data Protection Section */}
-        <section className='mb-12 bg-black/10 p-6 rounded-lg shadow-sm'>
+        <section className='mb-12 bg-white p-6 rounded-lg shadow-sm'>
           <div className='flex items-center mb-6'>
             <div className='h-10 w-10 bg-red-100 rounded-full flex items-center justify-center mr-4'>
               <FiLock className='text-red-600' size={20} />
@@ -296,7 +309,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div className='bg-blue-500/10 p-4 rounded-lg mt-4'>
-              <p className='text-blue-800'>
+              <p className='text-black'>
                 While we strive to use commercially acceptable means to protect
                 your personal data, we cannot guarantee its absolute security.
                 Users should also take steps to protect their account
@@ -307,19 +320,19 @@ export default function PrivacyPolicy() {
         </section>
 
         {/* User Rights Section */}
-        <section className='mb-12 bg-black/10 p-6 rounded-lg shadow-sm'>
+        <section className='mb-12 bg-white p-6  rounded-lg shadow-sm'>
           <div className='flex items-center mb-6'>
             <div className='h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4'>
               <FiUser className='text-indigo-600' size={20} />
             </div>
-            <h2 className='text-2xl font-semibold text-gray-900'>
+            <h2 className='text-2xl font-bold text-gray-900'>
               Your Data Rights
             </h2>
           </div>
 
-          <div className='grid md:grid-cols-2 gap-6 pl-14'>
-            <div className='bg-black/10 p-4 rounded-lg'>
-              <h4 className='font-medium text-gray-900 mb-2'>
+          <div className='grid md:grid-cols-2 gap-6 pl-2'>
+            <div className='bg-[#FCE277] p-4 rounded-lg'>
+              <h4 className='font-semibold text-gray-900 mb-2'>
                 Access & Correction
               </h4>
               <ul className='space-y-1 list-disc pl-5 text-gray-900'>
@@ -329,8 +342,8 @@ export default function PrivacyPolicy() {
               </ul>
             </div>
 
-            <div className='bg-black/10 p-4 rounded-lg'>
-              <h4 className='font-medium text-gray-900 mb-2'>
+            <div className='bg-[#FCE277] p-4 rounded-lg'>
+              <h4 className='font-semibold text-gray-900 mb-2'>
                 Deletion & Restriction
               </h4>
               <ul className='space-y-1 list-disc pl-5 text-gray-900'>
@@ -340,8 +353,8 @@ export default function PrivacyPolicy() {
               </ul>
             </div>
 
-            <div className='bg-black/10 p-4 rounded-lg'>
-              <h4 className='font-medium text-gray-900 mb-2'>
+            <div className='bg-[#FCE277] p-4 rounded-lg'>
+              <h4 className='font-semibold text-gray-900 mb-2'>
                 Data Portability
               </h4>
               <ul className='space-y-1 list-disc pl-5 text-gray-900'>
@@ -350,8 +363,8 @@ export default function PrivacyPolicy() {
               </ul>
             </div>
 
-            <div className='bg-black/10 p-4 rounded-lg'>
-              <h4 className='font-medium text-gray-900 mb-2'>
+            <div className='bg-[#FCE277] p-4 rounded-lg'>
+              <h4 className='font-semibold text-gray-900 mb-2'>
                 Objections & Complaints
               </h4>
               <ul className='space-y-1 list-disc pl-5 text-gray-900'>
@@ -361,30 +374,33 @@ export default function PrivacyPolicy() {
             </div>
           </div>
 
-          <div className='mt-6 pl-14'>
+          <div className='mt-6 pl-2'>
             <p className='text-gray-900'>
               To exercise any of these rights, please contact us at
-              privacy@zerobrokerage.com. We may need to verify your identity
-              before processing certain requests.
+              <b> xerobrokerage@gmail.com</b>. We may need to verify your
+              identity before processing certain requests.
             </p>
           </div>
         </section>
 
         {/* Additional Policy Sections */}
-        <section className='mb-12 bg-black/10 p-6 rounded-lg shadow-sm'>
+        <section className='mb-12 bg-white p-6 rounded-lg shadow-sm'>
           <div className='flex items-center mb-6'>
             <div className='h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center mr-4'>
               <FiInfo className='text-gray-900' size={20} />
             </div>
-            <h2 className='text-2xl font-semibold text-gray-900'>
+            <h2 className='text-2xl font-bold text-gray-900'>
               Additional Policy Information
             </h2>
           </div>
 
           <div className='space-y-6 pl-14'>
             <div>
-              <h3 className='text-xl font-medium text-gray-900 mb-3'>
-                Children's Privacy
+              <h3 className='text-xl font-semibold text-gray-900 mb-3 flex items-center'>
+                <span className='w-6 h-6 bg-yellow-200 text-black font-extrabold rounded-full flex items-center justify-center mr-3 text-sm'>
+                  1
+                </span>
+                Children's Policy
               </h3>
               <p className='text-gray-900'>
                 Our Service does not address anyone under the age of 18
@@ -396,8 +412,11 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h3 className='text-xl font-medium text-gray-900 mb-3'>
-                Third-Party Links
+              <h3 className='text-xl font-semibold text-gray-900 mb-3 flex items-center'>
+                <span className='w-6 h-6 bg-yellow-200 text-black font-extrabold rounded-full flex items-center justify-center mr-3 text-sm'>
+                  2
+                </span>
+                Third Party Links
               </h3>
               <p className='text-gray-900'>
                 Our Service may contain links to other sites that are not
@@ -408,7 +427,10 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h3 className='text-xl font-medium text-gray-900 mb-3'>
+              <h3 className='text-xl font-semibold text-gray-900 mb-3 flex items-center'>
+                <span className='w-6 h-6 bg-yellow-200 text-black font-extrabold rounded-full flex items-center justify-center mr-3 text-sm'>
+                  3
+                </span>
                 International Transfers
               </h3>
               <p className='text-gray-900'>
@@ -420,7 +442,10 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h3 className='text-xl font-medium text-gray-900 mb-3'>
+              <h3 className='text-xl font-semibold text-gray-900 mb-3 flex items-center'>
+                <span className='w-6 h-6 bg-yellow-200 text-black font-extrabold rounded-full flex items-center justify-center mr-3 text-sm'>
+                  4
+                </span>
                 Policy Changes
               </h3>
               <p className='text-gray-900'>
@@ -432,8 +457,11 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h3 className='text-xl font-medium text-gray-900 mb-3'>
-                Do Not Track Signals
+              <h3 className='text-xl font-semibold text-gray-900 mb-3 flex items-center'>
+                <span className='w-6 h-6 bg-yellow-200 text-black font-extrabold rounded-full flex items-center justify-center mr-3 text-sm'>
+                  5
+                </span>
+                Do not track signals
               </h3>
               <p className='text-gray-900'>
                 We do not currently respond to Do Not Track (DNT) signals as
@@ -446,7 +474,7 @@ export default function PrivacyPolicy() {
         </section>
 
         {/* Contact Information */}
-        <section className='bg-black/10 p-8 rounded-lg text-center'>
+        {/* <section className='bg-white p-8 rounded-lg text-center'>
           <h3 className='text-xl font-medium text-gray-900 mb-4'>Contact Us</h3>
           <p className='text-gray-900 mb-4'>
             If you have any questions about this Privacy Policy, please contact
@@ -459,7 +487,7 @@ export default function PrivacyPolicy() {
               By mail: 123 Real Estate Plaza, Mumbai, India 400001
             </p>
           </div>
-        </section>
+        </section> */}
       </div>
     </div>
   )
