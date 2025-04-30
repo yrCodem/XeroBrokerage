@@ -15,8 +15,6 @@ export default function Upload() {
   const [message, setMessage] = useState("");
   const [uploadedUrl, setUploadedUrl] = useState("");
   const [preview, setPreview] = useState("");
-
-  // const [fileName, setFileName] = useState("");
   const [errors, setErrors] = useState({
     beds: "",
     baths: "",
@@ -582,57 +580,4 @@ export default function Upload() {
       </div>
     </div>
   );
-}
-
-{
-  /* <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-blue-800 border-b pb-2">
-                Property Images
-              </h2>
-
-              <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Upload Images <span className="text-red-500">*</span>
-                </label>
-
-                <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-500 transition-colors">
-                  <FiUploadCloud className="mx-auto h-12 w-12 text-blue-400 mb-3" />
-                  <div className="flex justify-center">
-                    <label className="px-6 py-2 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-blue-700 transition-colors">
-                      Browse Files
-                      <input
-                        type="file"
-                        className="hidden"
-                        name="images"
-                        onChange={handleFileChange}
-                        accept="image/*"
-                        required
-                      />
-                    </label>
-                  </div>
-                  <p className="mt-3 text-sm text-gray-600">
-                    or drag and drop images here
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1">
-                    PNG, JPG up to 5MB each (max 10 images)
-                  </p>
-                </div>
-
-                {fileName && (
-                  <div className="text-sm text-gray-600">
-                    Selected: {fileName}
-                  </div>
-                )}
-
-                {preview && (
-                  <div className="mt-4 grid grid-cols-3 gap-4">
-                    <img
-                      src={preview}
-                      alt="Preview"
-                      className="rounded-lg border border-gray-200 h-32 object-cover"
-                    />
-                  </div>
-                )}
-              </div>
-            </div> */
 }

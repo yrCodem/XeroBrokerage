@@ -58,7 +58,7 @@ const SignupForm = () => {
     e.preventDefault();
     if (validate()) {
       setIsSubmitting(true);
-      const url = "http://localhost:3000/api/auth/signup";
+      const url = "/api/auth/signup";
       const values = formData;
 
       try {

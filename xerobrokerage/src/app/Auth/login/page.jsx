@@ -19,7 +19,7 @@ const LoginForm = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     setIsSubmitting(true)
-    const url = 'http://localhost:3000/api/auth/login'
+    const url = '/api/auth/login'
     const values = { email, password }
 
     try {
@@ -34,7 +34,8 @@ const LoginForm = () => {
       }
       router.push('/')
     } catch (err) {
-      toast.error(err.response.data.message, {
+      alert(JSON.stringify(err))
+      toast.error(err.response.data.message || "error", {
         theme: 'dark',
         position: 'bottom-right',
         autoClose: 3000,
