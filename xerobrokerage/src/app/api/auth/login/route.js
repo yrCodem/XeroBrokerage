@@ -22,22 +22,27 @@ export async function POST(req) {
     );
   }
 
-    // const isMatch = await user.comparePassword(password);
-    // if (!isMatch) {
-    //   console.log("Password Missmatch ", email);
-    //   return new Response(
-    //     JSON.stringify({
-    //       success: false,
-    //       message: "Invalid Password.. Please Try Again",
-    //     }),
-    //     {
-    //       status: 400,
-    //       headers: { "Content-Type": "application/json" },
-    //     }
-    //   );
-    // }
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      console.log("Password Missmatch ", email);
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: "Invalid Password.. Please Try Again",
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
 
-  const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "10h" } 
+    );
+    
 
   console.log("Token generated: ", token);
 
