@@ -13,7 +13,7 @@ const isTokenValid = (token) => {
     return null;
   }
   try {
-    const decoded = jwtDecode(token);
+    const decoded = jwtDecode(token);    
     return decoded.exp * 1000 > Date.now() ? decoded : null;
   } catch (e) {
     console.log("error occured..");

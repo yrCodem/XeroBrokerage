@@ -18,8 +18,8 @@ export default function RootLayout({ children }) {
           <main className="max-h-[90vh] max-w-screen relative top-[79px]">
             {children}
           </main>
-          <ToastContainer />
         </AuthProvider>
+        <ToastContainer />
       </body>
     </html>
   );
