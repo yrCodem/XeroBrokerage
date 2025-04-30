@@ -34,7 +34,6 @@ const LoginForm = () => {
       }
       router.push('/')
     } catch (err) {
-      alert(JSON.stringify(err))
       toast.error(err.response.data.message || 'error', {
         theme: 'dark',
         position: 'bottom-right',

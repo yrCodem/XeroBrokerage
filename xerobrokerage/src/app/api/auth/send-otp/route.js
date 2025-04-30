@@ -1,15 +1,16 @@
 import nodemailer from "nodemailer";
 import { connectDB } from "@/lib/db";
-import OtpSchema from "@/models/Otp";
+import OtpSchema from "@/lib/models/Otp";
 
-export default async function POST(req) {
+export async function POST(req) {
   await connectDB();
   const { email } = await req.json();
+
   if (!email) {
     return new Response(
       JSON.stringify({
         success: false,
-        message: "Email is Required",
+        message: "Email is required",
       }),
       {
         status: 400,
@@ -22,7 +23,6 @@ export default async function POST(req) {
 
   await OtpSchema.deleteMany({ email });
   await OtpSchema.create({ email, otp });
-
 
   const transporter = nodemailer.createTransport({
     service: "Gmail",
@@ -41,29 +41,26 @@ export default async function POST(req) {
 
   try {
     await transporter.sendMail(mailOptions);
-    return (
-      new Response(
-        JSON.stringify({
-          success: true,
-          message: "successfull sent OTP",
-        })
-      ),
+
+    return new Response(
+      JSON.stringify({
+        success: true,
+        message: "Successfully sent OTP",
+      }),
       {
-        status: 400,
+        status: 200,
         headers: { "Content-Type": "application/json" },
       }
     );
   } catch (err) {
-    console.error(err);
-    return (
-      new Response(
-        JSON.stringify({
-          success: true,
-          message: "successfull sent OTP",
-        })
-      ),
+    console.error("Error sending email:", err);
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: "Failed to send OTP",
+      }),
       {
-        status: 400,
+        status: 500,
         headers: { "Content-Type": "application/json" },
       }
     );
