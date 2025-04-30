@@ -20,7 +20,7 @@ const ForgotPasswordForm = () => {
   }
 
   return (
-    <div className='fixed inset-0 overflow-hidden bg-gray-50'>
+    <div className='fixed inset-0 overflow-hidden '>
       <div className='absolute inset-0 flex justify-center items-center p-5'>
         <form
           onSubmit={handleSubmit}
@@ -69,10 +69,10 @@ const ForgotPasswordForm = () => {
           <button
             type='submit'
             disabled={isSubmitting}
-            className={`mt-4 w-full h-12 rounded-lg font-medium text-white transition-all ${
+            className={`mt-4 w-full h-12 rounded-lg font-medium text-gray-600 hover:text-black transition-all ${
               isSubmitting
-                ? 'bg-gray-700 cursor-not-allowed'
-                : 'bg-gray-800 hover:bg-gray-700 active:translate-y-0.5'
+                ? 'bg-[#FCE277] text-gray-600 cursor-progress'
+                : 'bg-[#FCE277] hover:bg-[#FFDF4D] active:translate-y-0.5'
             }`}
           >
             {isSubmitting ? (

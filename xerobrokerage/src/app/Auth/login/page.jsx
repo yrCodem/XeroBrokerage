@@ -160,7 +160,7 @@ const LoginForm = () => {
             disabled={isSubmitting}
             className={`mt-3 w-full h-12 rounded-lg font-bold text-gray-600 hover:text-black transition-all ${
               isSubmitting
-                ? 'bg-[#FCE277] text-gray-600 cursor-not-allowed'
+                ? 'bg-[#FCE277] text-gray-600 cursor-progress'
                 : 'bg-[#FCE277] hover:bg-[#FFDF4D] active:translate-y-0.5'
             }`}
           >
