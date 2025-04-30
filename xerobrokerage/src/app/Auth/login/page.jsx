@@ -35,7 +35,7 @@ const LoginForm = () => {
       router.push('/')
     } catch (err) {
       alert(JSON.stringify(err))
-      toast.error(err.response.data.message || "error", {
+      toast.error(err.response.data.message || 'error', {
         theme: 'dark',
         position: 'bottom-right',
         autoClose: 3000,
@@ -54,16 +54,16 @@ const LoginForm = () => {
       <div className='w-full max-w-md max-h-[calc(100vh-40px)] overflow-y-auto'>
         <form
           onSubmit={handleSubmit}
-          className='flex flex-col gap-5 bg-black/10 p-10 rounded-xl shadow-lg animate-fade-in'
+          className='flex flex-col gap-5 bg-white p-10 rounded-xl shadow-lg animate-fade-in'
         >
           <h2 className='text-center text-2xl font-bold text-black mb-2'>
-            XeroBrokerage
+            XeroBrokerage Login
           </h2>
 
           {/* Email Input */}
           <div className='flex flex-col gap-2'>
             <label className='text-sm font-semibold text-black'>Email</label>
-            <div className='flex items-center rounded-lg h-12 px-3 bg-black/10'>
+            <div className='flex items-center rounded-lg h-12 px-3 bg-[#F2F1EF]'>
               <svg
                 className='w-5 h-5 text-black'
                 viewBox='0 0 32 32'
@@ -84,10 +84,8 @@ const LoginForm = () => {
 
           {/* Password Input */}
           <div className='flex flex-col gap-2'>
-            <label className='text-sm font-semibold text-black'>
-              Password
-            </label>
-            <div className='flex items-center rounded-lg h-12 px-3 bg-black/10'>
+            <label className='text-sm font-semibold text-black'>Password</label>
+            <div className='flex items-center rounded-lg h-12 px-3 bg-[#F2F1EF]'>
               <svg
                 className='w-5 h-5 text-black'
                 viewBox='-64 0 512 512'
@@ -160,10 +158,10 @@ const LoginForm = () => {
           <button
             type='submit'
             disabled={isSubmitting}
-            className={`mt-3 w-full h-12 rounded-lg font-medium text-white transition-all ${
+            className={`mt-3 w-full h-12 rounded-lg font-bold text-gray-600 hover:text-black transition-all ${
               isSubmitting
-                ? 'bg-black cursor-not-allowed'
-                : 'bg-black hover:bg-black/90 active:translate-y-0.5'
+                ? 'bg-[#FCE277] text-gray-600 cursor-not-allowed'
+                : 'bg-[#FCE277] hover:bg-[#FFDF4D] active:translate-y-0.5'
             }`}
           >
             {isSubmitting ? (
@@ -189,9 +187,7 @@ const LoginForm = () => {
           {/* Divider */}
           <div className='flex items-center my-2'>
             <div className='flex-1 h-px bg-gray-900'></div>
-            <span className='px-3 text-xs text-black uppercase'>
-              Or With
-            </span>
+            <span className='px-3 text-xs text-black uppercase'>Or With</span>
             <div className='flex-1 h-px bg-gray-900'></div>
           </div>
 
@@ -199,7 +195,7 @@ const LoginForm = () => {
           <div className='flex gap-3'>
             <button
               type='button'
-              className='flex-1 flex justify-center items-center gap-2 h-12 rounded-lg bg-white text-black font-medium '
+              className='flex-1 flex justify-center items-center border-1  gap-2 h-12 rounded-lg bg-white text-black font-medium hover:cursor-pointer'
             >
               <svg
                 className='w-5 h-5'
@@ -227,7 +223,7 @@ const LoginForm = () => {
             </button>
             <button
               type='button'
-              className='flex-1 flex justify-center items-center gap-2 h-12 rounded-lg bg-white text-black font-medium'
+              className='flex-1 flex justify-center items-center gap-2 h-12 rounded-lg border-1 bg-white text-black font-medium hover:cursor-pointer'
             >
               <svg
                 className='w-5 h-5'
